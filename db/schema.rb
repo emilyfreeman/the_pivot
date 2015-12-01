@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115204107) do
+ActiveRecord::Schema.define(version: 20151201020941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chip_orders", force: :cascade do |t|
-    t.integer "chip_id"
+  create_table "item_orders", force: :cascade do |t|
+    t.integer "item_id"
     t.integer "order_id"
     t.integer "quantity"
     t.float   "subtotal"
   end
 
-  add_index "chip_orders", ["chip_id"], name: "index_chip_orders_on_chip_id", using: :btree
-  add_index "chip_orders", ["order_id"], name: "index_chip_orders_on_order_id", using: :btree
+  add_index "item_orders", ["item_id"], name: "index_item_orders_on_item_id", using: :btree
+  add_index "item_orders", ["order_id"], name: "index_item_orders_on_order_id", using: :btree
 
-  create_table "chips", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
     t.string   "description"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20151115204107) do
     t.string   "status",             default: "Available"
   end
 
-  add_index "chips", ["oil_id"], name: "index_chips_on_oil_id", using: :btree
+  add_index "items", ["oil_id"], name: "index_items_on_oil_id", using: :btree
 
   create_table "oils", force: :cascade do |t|
     t.string   "name"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20151115204107) do
     t.integer  "role",            default: 0
   end
 
-  add_foreign_key "chip_orders", "chips"
-  add_foreign_key "chip_orders", "orders"
-  add_foreign_key "chips", "oils"
+  add_foreign_key "item_orders", "items"
+  add_foreign_key "item_orders", "orders"
+  add_foreign_key "items", "oils"
 end

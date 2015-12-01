@@ -8,16 +8,16 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal User.all.last.id, order.user_id
   end
 
-  test 'an order has many chip orders' do
+  test 'an order has many item orders' do
     create_shop
     user = create_user
     order = user.orders.create(total_price: 20)
-    order.chip_orders.create(chip_id: Chip.all.first.id,
+    order.item_orders.create(item_id: Item.all.first.id,
                              quantity: 1, subtotal: 20)
-    order.chip_orders.create(chip_id: Chip.all.last.id,
+    order.item_orders.create(item_id: Item.all.last.id,
                              quantity: 1, subtotal: 20)
 
-    assert_equal 2, order.chip_orders.all.count
+    assert_equal 2, order.item_orders.all.count
   end
 
   test "an order can return it's status update links" do

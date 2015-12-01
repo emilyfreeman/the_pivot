@@ -1,5 +1,5 @@
 class Oil < ActiveRecord::Base
-  has_many :chips
+  has_many :items
   validates :name, presence: true, uniqueness: true
   before_save :set_slug
 
@@ -11,8 +11,8 @@ class Oil < ActiveRecord::Base
     self.slug = name.downcase.tr(" ", "-")
   end
 
-  def gimee_your_chips
-    chips.available
+  def gimee_your_items
+    items.available
   end
 
   def oil_index_image
