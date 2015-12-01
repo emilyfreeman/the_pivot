@@ -8,7 +8,7 @@
 
 Oil.create!([{name: "Lard"}, {name: "Coconut Oil"}, {name: "Avocado Oil"}])
 
-Chip.create!([
+Item.create!([
   { name: "Grandma Utz Handcooked Original",
     price: 6.99,
     description: "Whole fresh potatoes, sliced and cooked in lard, with salt added. ",
@@ -18,7 +18,7 @@ Chip.create!([
     price: 4.25,
     description: "Wade with coconut oil. Nature's most nourishing oil. Non GMO
     Project verified. Always kettle cooked in Colorado. Our goal at Jackson's
-    Honest Potato Chips is to bring the potato chip back to its humble and simple
+    Honest Potato Chips is to bring the potato item back to its humble and simple
     roots by using the finest potatoes available and kettle frying them by hand
     using organic coconut oil.",
     oil_id: 2,
@@ -67,4 +67,4 @@ Chip.create!([
 
   User.create!([{username: "User", password: "Password"}, {username: "Admin", password: "Password", role: 1}])
   Order.create!([{total_price: 20, user_id: 1}])
-  ChipOrder.create!([{chip_id: 1, quantity: 1, subtotal: 20, order_id: 1}])
+  ItemOrder.create!([{item_id: 1, quantity: 1, subtotal: 20, order_id: 1}])

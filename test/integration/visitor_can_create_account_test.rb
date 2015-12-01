@@ -6,11 +6,11 @@ class VisitorCanCreateAccountTest < ActionDispatch::IntegrationTest
 
     category_1 = Oil.create(name: "Lard")
 
-    Chip.create(name: "Slotachips", price: 20,
+    Item.create(name: "Slotaitems", price: 20,
                 description: "Super yummy", oil_id: category_1.id)
 
-    visit chips_path
-    within("#slotachips") do
+    visit items_path
+    within("#slotaitems") do
       click_button "Add to Cart"
     end
 
@@ -38,7 +38,7 @@ class VisitorCanCreateAccountTest < ActionDispatch::IntegrationTest
 
     visit "/cart"
 
-    assert page.has_content?("Slotachips")
+    assert page.has_content?("Slotaitems")
 
     within(".right") do
       click_link "Logout"

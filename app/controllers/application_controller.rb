@@ -14,13 +14,6 @@ class ApplicationController < ActionController::Base
     Oil.all
   end
 
-  # def return_oil_names
-  #   oil_names = Oil.all.map do |oil|
-  #     oil.name
-  #   end
-  #   oil_names
-  # end
-
   def current_user
     User.find(session[:user_id]) if session[:user_id]
   end
