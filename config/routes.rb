@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show, :create, :new, :update, :edit, :destroy]
     resources :dashboard, only: [:index, :show]
     resources :orders, only: [:index, :update]
- end
+  end
 
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
@@ -22,5 +22,4 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
   get '/cart', to: 'cart_items#index'
   get '/:slug', to: 'oils#show'
-  # get '/:slug', to: redirect('/oils/%{slug}'), as: "oil_name"
 end
