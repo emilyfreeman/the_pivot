@@ -42,6 +42,7 @@ group :development, :test do
   gem "launchy"
   gem "mocha"
   gem "simplecov"
+  gem "mrspec"
 end
 
 group :development do
