@@ -1,16 +1,66 @@
-<!-- ORIGINAL! -->
-<!-- <center><image src="http://i.imgur.com/nmKGgPr.jpg"></center>
-<%= render partial: "shared/search" %>
-
-<div class="items">
-  <div class="row">
-    <%= render @items %>
-  </div>
-</div> -->
-
 <h3>Featured Items</h3>
 
+<div class="row">
+  <% @items.each do |item| %>
+    <div class="col s12 m2">
+      <div class="card">
+        <div class="card-image">
+          <a href="<%= item_path(item.id) %>"><img class="max-width" src="<%= item.image.url(:original) %>"></a>
+        </div>
+        <div class="card-content">
+          <p><%= item.name %></p>
+        </div>
 
-<div class="right">
-  <%= link_to "View All", %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="all-items-link" class="right">
+  <%= link_to "View All >", items_path %>
+</div>
+
+
+<h3>Shop by Category</h3>
+
+<div class="row">
+  <% @categories.each do |category| %>
+    <div class="col s12 m2">
+      <div class="card">
+        <div class="card-image">
+          <a href="<%= category_path(category.id) %>"><img class="max-width" src="<%= category.image.url(:original) %>"></a>
+        </div>
+        <div class="card-content">
+          <p><%= category.name %></p>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="all-categories-link" class="right">
+  <%= link_to "View All >", oils_path %>
+</div>
+
+<h3>Featured Farmers</h3>
+
+<div class="row">
+  <% @farmers.each do |farmer| %>
+    <div class="col s12 m2">
+      <div class="card">
+        <div class="card-image">
+          <a href="<%= user_path(farmer.id) %>"><img class="max-width" src=""></a>
+        </div>
+        <div class="card-content">
+          <p><%= farmer.first_name %></p>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="all-farmers-link" class="right">
+  <%= link_to "View All >", users_path %>
 </div>
