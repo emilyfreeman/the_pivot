@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202014119) do
+ActiveRecord::Schema.define(version: 20151202021126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,9 @@ ActiveRecord::Schema.define(version: 20151202014119) do
     t.datetime "image_updated_at"
     t.string   "status",             default: "Available"
     t.integer  "category_id"
-    t.integer  "store_id"
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
-  add_index "items", ["store_id"], name: "index_items_on_store_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "status",      default: "Ordered"
@@ -86,16 +84,11 @@ ActiveRecord::Schema.define(version: 20151202014119) do
     t.integer  "role",            default: 0
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "store_id"
   end
-
-  add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
 
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "stores"
   add_foreign_key "store_users", "stores"
   add_foreign_key "store_users", "users"
-  add_foreign_key "users", "stores"
 end

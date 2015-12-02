@@ -7,11 +7,18 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
                        username: "john",
                        password: "password",
                        role: 1)
-    store = Store.create(name: "Adam's Apples",
-                         status: "approved")
+
+    # store = Store.create(name: "Adam's Apples",
+    #                      status: "approved")
+
+    store = user.stores.create(name: "Adam's Apples",
+                       status: "approved")
+
     cat = Category.create(name: "fruit")
-    StoreUser.create(user_id: user.id,
-                     store_id: store.id)
+
+    # StoreUser.create(user_id: user.id,
+    #                  store_id: store.id)
+
     store.items.create(name: "Apple",
                        description: "Gala Apple",
                        price: 6.0,
