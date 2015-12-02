@@ -26,10 +26,9 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Apple")
     end
 
-    within(".top_farmers") do
-      assert page.has_content?("Adam's Apples")
+    within(".top-farmers") do
+      assert page
     end
-
     within(".categories") do
       assert page.has_content?("Fruit")
     end
