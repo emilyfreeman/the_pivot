@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'items#index'
+
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
