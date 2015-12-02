@@ -2,20 +2,20 @@ require 'test_helper'
 
 class UserViewIndexPageTest < ActionDispatch::IntegrationTest
   def setup
-    # enum role %w(default business_admin platform_admin)
-
     user = User.create(first_name: "John",
                        last_name: "Slota",
                        username: "john",
                        password: "password",
                        role: 1)
-
-    store = user.store.create(name: "Adam's Apples")
-
+    store = Store.create(name: "Adam's Apples",
+                         status: "approved")
+    cat = Category.create(name: "fruit")
+    StoreUser.create(user_id: user.id,
+                     store_id: store.id)
     store.items.create(name: "Apple",
                        description: "Gala Apple",
-                       price: 6,
-                       category: "fruit")
+                       price: 6.0,
+                       category_id: cat.id)
   end
 
   test "featured items on index page" do
@@ -25,7 +25,7 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Apple")
     end
 
-    within(".stores") do
+    within(".top_farmers") do
       assert page.has_content?("Adam's Apples")
     end
 
