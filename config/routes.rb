@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :update]
   end
 
+
+  get '/farmers', to: 'stores#index'
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
