@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
-  has_many :stores, through: :store_users
-  has_one :store
+  has_and_belongs_to_many :stores
 
   validates :username, presence: true,
                      uniqueness: true
