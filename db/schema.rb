@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202021126) do
+ActiveRecord::Schema.define(version: 20151202023108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(version: 20151202021126) do
     t.datetime "image_updated_at"
     t.string   "status",             default: "Available"
     t.integer  "category_id"
+    t.integer  "store_id"
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
+  add_index "items", ["store_id"], name: "index_items_on_store_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "status",      default: "Ordered"
@@ -59,22 +61,22 @@ ActiveRecord::Schema.define(version: 20151202021126) do
     t.string   "address"
   end
 
-  create_table "store_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "store_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "store_users", ["store_id"], name: "index_store_users_on_store_id", using: :btree
-  add_index "store_users", ["user_id"], name: "index_store_users_on_user_id", using: :btree
-
   create_table "stores", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "status"
   end
+
+  create_table "stores_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stores_users", ["store_id"], name: "index_stores_users_on_store_id", using: :btree
+  add_index "stores_users", ["user_id"], name: "index_stores_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20151202021126) do
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "categories"
-  add_foreign_key "store_users", "stores"
-  add_foreign_key "store_users", "users"
+  add_foreign_key "items", "stores"
+  add_foreign_key "stores_users", "stores"
+  add_foreign_key "stores_users", "users"
 end
