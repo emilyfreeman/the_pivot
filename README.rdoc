@@ -1,5 +1,5 @@
 {<img alt='Stories in Ready' src='https://badge.waffle.io/emilydowdle/the_pivot.png?label=ready&title=Ready' />}[https://waffle.io/emilydowdle/the_pivot]
 == README
 
-Heroku App link: young-harbor-1645.herokuapp.com
+Heroku App link: https://pivotproduce.herokuapp.com/
 
