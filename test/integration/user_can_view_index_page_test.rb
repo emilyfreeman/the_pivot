@@ -20,7 +20,6 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
   end
 
   test "featured items on index page" do
-    skip
     visit root_path
 
     within(".featured") do
