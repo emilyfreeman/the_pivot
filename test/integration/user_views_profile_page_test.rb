@@ -15,7 +15,6 @@ class UserViewsProfileTest < ActionDispatch::IntegrationTest
     fill_in("Password", with: "password")
     click_button "Login"
     visit user_path(@user)
-    save_and_open_page
     within("#order-history") do
       assert page.has_content? "Your past orders"
     end
