@@ -1,11 +1,11 @@
 <h3>Featured Items</h3>
 
-<div class="row">
+<div class="row featured">
   <% @items.each do |item| %>
     <div class="col s12 m2">
       <div class="card">
         <div class="card-image">
-          <a href="<%= item_path(item.id) %>"><img class="max-width" src="<"></a>
+          <a href="<%= item_path(item.id) %>"><img class="max-width" src=""></a>
         </div>
         <div class="card-content">
           <p><%= item.name %></p>
@@ -23,7 +23,7 @@
 
 <h3>Shop by Category</h3>
 
-<div class="row">
+<div class="row categories">
   <% @categories.each do |category| %>
     <div class="col s12 m2">
       <div class="card">
@@ -45,15 +45,15 @@
 
 <h3>Featured Farmers</h3>
 
-<div class="row">
-  <% @farmers.each do |farmer| %>
+<div class="row top-farmers">
+  <% @stores.each do |store| %>
     <div class="col s12 m2">
       <div class="card">
         <div class="card-image">
-          <a href="<%= user_path(farmer.id) %>"><img class="max-width" src=""></a>
+          <a href="<%= store_path(store) %>"><img class="max-width" src=""></a>
         </div>
         <div class="card-content">
-          <p><%= farmer.first_name %></p>
+          <p><%= store.name %></p>
         </div>
 
       </div>
