@@ -7,6 +7,7 @@ Dashboard for <%= current_user.username %>
 <%= link_to "View Cart", cart_path %>
 </h4>
 
+<h4 id='user-bio'><%= @user.bio %></h4>
 <% if @orders %>
   <h4 id='order-history'>Your past orders:</h4>
   <%= render partial: 'orders/orders_table' %>

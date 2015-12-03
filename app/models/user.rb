@@ -18,4 +18,6 @@ class User < ActiveRecord::Base
   def store_admin?
     roles.exists?(name: "store_admin")
   end
+
+  enum role: %w(default admin)
 end
