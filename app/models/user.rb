@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
+
   has_many :user_stores
   has_many :stores, through: :user_stores
 
-  validates :username, presence: true,
-                     uniqueness: true
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
-  enum role: %w(default business_admin platform_admin)
+  validates :username, presence: true,
+                       uniqueness: true
 end
