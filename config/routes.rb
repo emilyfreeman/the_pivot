@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
-  root to: "items#index"
+  root to: "welcome#index"
 
   resources :categories, only: [:index, :show], param: :slug
   resources :oils, only: [:index, :show], param: :slug
