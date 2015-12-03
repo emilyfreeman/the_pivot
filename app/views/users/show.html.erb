@@ -1,14 +1,23 @@
-<h2>
-Dashboard for <%= current_user.username %>
-</h2>
+<div class= "">
+  <h2>
+  Dashboard for <%= current_user.username %>
+  </h2>
+</div>
 
-<h4>
-<%= link_to "Edit Account", edit_user_path(current_user) %> |
-<%= link_to "View Cart", cart_path %>
-</h4>
+<div>
+  <h6>
+    <%= link_to "Edit Account", edit_user_path(current_user) %> |
+    <%= link_to "View Cart", cart_path %>
+  </h6>
+</div>
 
-<h4 id='user-bio'><%= @user.bio %></h4>
+<div>
+  <h4 id='user-bio'><%= @user.bio %></h4>
+</div>
+
 <% if @orders %>
+<div>
   <h4 id='order-history'>Your past orders:</h4>
-  <%= render partial: 'orders/orders_table' %>
-<% end %>
+    <%= render partial: 'orders/orders_table' %>
+    <% end %>
+</div>
