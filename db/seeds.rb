@@ -1,8 +1,9 @@
 class Seed
   def self.start
     seed = Seed.new
-    seed.generate_items
+    seed.generate_categories
     seed.generate_stores
+    seed.generate_items
     seed.generate_admins
   end
 
@@ -21,7 +22,9 @@ class Seed
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200"
+        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
+        category_id: rand(1..Category.count),
+        store_id: rand(1..Store.count)
         )
       puts "Item #{i}: #{item.name} created!"
     end
@@ -33,6 +36,7 @@ class Seed
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
+        bio: Faker::Lorem.paragraph
       )
       add_items(store)
       puts "Store #{i}: Store for #{user.name} created!"
@@ -57,7 +61,7 @@ class Seed
 
   def add_stores(user)
     2.times do |i|
-      store = Store.offset(Random.new.rand(1..500))
+      store = Store.offset(Random.new.rand(1..50))
       user.stores << store
       puts "#{i}: Added item #{store.name} to user #{user.id}."
     end
