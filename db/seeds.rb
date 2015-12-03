@@ -48,21 +48,14 @@ class Seed
     end
   end
 
-  def create_user
-    User.new(
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      username: Faker::Internet.user_name,
-      password_digest: Faker::Internet.password
-    )
-  end
-
   def generate_users
     50.times do |i|
-      user = create_user
-      unless user.save
-        user = create_user
-      end
+      user = User.create!(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        username: Faker::Internet.user_name + "#{i}",
+        password_digest: Faker::Internet.password
+      )
       user.roles << Role.find(Random.new.rand(1..3))
     end
   end
