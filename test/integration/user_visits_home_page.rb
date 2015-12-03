@@ -24,7 +24,6 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
 
   test "featured items on index page" do
     visit root_path
-
     within(".featured") do
       assert page.has_content?("Apple")
     end
