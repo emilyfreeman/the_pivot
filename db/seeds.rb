@@ -34,7 +34,7 @@ class Seed
         category_id: rand(1..Category.count),
         store_id: rand(1..Store.count)
         )
-        
+
       puts "Item #{i}: #{item.name} created!"
     end
   end
@@ -58,7 +58,8 @@ class Seed
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         username: Faker::Internet.user_name + "#{i}",
-        password_digest: Faker::Internet.password
+        password_digest: Faker::Internet.password,
+        bio: Faker::Lorem.paragraph
       )
       user.roles << Role.find(Random.new.rand(1..3))
     end
