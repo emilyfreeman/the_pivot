@@ -3,8 +3,9 @@ class Seed
     seed = Seed.new
     seed.generate_roles
     seed.generate_categories
-    seed.generate_items
     seed.generate_stores
+    seed.generate_items
+    seed.generate_store_items
     seed.generate_users
     seed.generate_admins
   end
@@ -47,8 +48,14 @@ class Seed
         status: "accepted",
         bio: Faker::Lorem.paragraph
       )
-      add_items(store)
       puts "Store #{i}: Store for #{user.name} created!"
+    end
+  end
+
+  def generate_store_items
+    20.times do |i|
+      store = Store.find(i+1)
+      add_items(store)
     end
   end
 
