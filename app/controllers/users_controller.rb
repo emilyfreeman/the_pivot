@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @orders = @user.orders.all
-    if @user.admin?
-      redirect_to admin_dashboard_index_path
+    if @user.store_admin?
+      redirect_to admin_dashboard_path
     else
       render :show
     end

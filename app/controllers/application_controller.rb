@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart
-  helper_method :oils, :current_user, :current_admin?, :return_oil_names
+  helper_method :oils, :current_user, :store_admin?, :return_oil_names
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -18,11 +18,13 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id]) if session[:user_id]
   end
 
+  def
+
   def require_current_user
     render file: "/public/404" unless current_user
   end
 
-  def current_admin?
-    current_user && current_user.admin?
+  def store_admin?
+    current_user && current_user.store_admin?
   end
 end
