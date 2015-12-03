@@ -5,9 +5,12 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
     user = User.create(first_name: "John",
                        last_name: "Slota",
                        username: "john",
-                       password: "password",
-                       role: 1)
+                       password: "password"
+                       )
 
+    role = Role.create(name: "business_admin")
+    user.roles << role
+    
     store = user.stores.create(name: "Adam's Apples",
                        status: "approved")
 

@@ -1,9 +1,18 @@
 class Seed
   def self.start
     seed = Seed.new
+    seed.generate_roles
+    seed.generate_categories
     seed.generate_items
     seed.generate_stores
+    seed.generate_users
     seed.generate_admins
+  end
+
+  def generate_roles
+    Role.create!(name: "platform_admin")
+    Role.create!(name: "business_admin")
+    Role.create!(name: "registered_user")
   end
 
   def generate_categories
@@ -16,20 +25,20 @@ class Seed
   end
 
   def generate_items
-    500.times do |i|
+    50.times do |i|
       item = Item.create!(
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
         image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200"
-        )
+      )
       puts "Item #{i}: #{item.name} created!"
     end
   end
 
   def generate_stores
-    50.times do |i|
-      user = User.offset(Random.new.rand(1..50))
+    20.times do |i|
+      user = User.offset(Random.new.rand(1..20))
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
@@ -39,17 +48,38 @@ class Seed
     end
   end
 
+  def create_user
+    User.new(
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      username: Faker::Internet.user_name,
+      password_digest: Faker::Internet.password
+    )
+  end
+
+  def generate_users
+    50.times do |i|
+      user = create_user
+      unless user.save
+        user = create_user
+      end
+      user.roles << Role.find(Random.new.rand(1..3))
+    end
+  end
+
   def generate_admins
-    20.times do |i|
-      user = User.create!(
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        username: Faker::Internet.user_name,
-        password_digest: Faker::Internet.password,
-        role: 1
-        )
-      add_stores(user)
-      puts "User #{i}: #{user.first_name} - #{user.username} created!"
+    admins = User.joins(:roles).where(roles: { name: "business_admin" })
+    admins.each do |admin|
+      add_stores(admin)
+      # admin = User.create!(
+      #   first_name: Faker::Name.first_name,
+      #   last_name: Faker::Name.last_name,
+      #   username: Faker::Internet.user_name,
+      #   password_digest: Faker::Internet.password
+      # )
+      # add_roles(admin)
+      # add_stores(admin)
+      puts "User #{admin.first_name}: stores created!"
     end
   end
 
@@ -57,15 +87,15 @@ class Seed
 
   def add_stores(user)
     2.times do |i|
-      store = Store.offset(Random.new.rand(1..500))
+      store = Store.offset(Random.new.rand(1..20))
       user.stores << store
       puts "#{i}: Added item #{store.name} to user #{user.id}."
     end
   end
 
   def add_items(store)
-    10.times do |i|
-      item = Item.offset(Random.new.rand(1..500))
+    5.times do |i|
+      item = Item.offset(Random.new.rand(1..50))
       store.items << item
       puts "#{i}: Added item #{item.name} to store #{store.id}."
     end
