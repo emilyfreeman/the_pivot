@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   validates :name, presence: true
   belongs_to :oil_type
   belongs_to :store
+  belongs_to :category
   has_many :item_orders
   has_many :orders, through: :item_orders
   before_save :set_slug

@@ -30,8 +30,11 @@ class Seed
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200"
-      )
+        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
+        category_id: rand(1..Category.count),
+        store_id: rand(1..Store.count)
+        )
+        
       puts "Item #{i}: #{item.name} created!"
     end
   end
@@ -42,6 +45,7 @@ class Seed
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
+        bio: Faker::Lorem.paragraph
       )
       add_items(store)
       puts "Store #{i}: Store for #{user.name} created!"
