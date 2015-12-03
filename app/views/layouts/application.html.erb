@@ -8,26 +8,26 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body class="application-body">
+  <body class="application-body">
 
-  <%= render partial: '/shared/nav' %>
+    <%= render partial: '/shared/nav' %>
 
-  <div class="container">
-      <% flash.each do |type, msg| %>
-      <div class="card">
-        <p>
-          <center style='color:green'><%= content_tag :div, msg.html_safe %></center>
-        </p>
+      <div class="container">
+        <% flash.each do |type, msg| %>
+          <div class="card">
+            <p>
+              <center style='color:green'><%= content_tag :div, msg.html_safe %></center>
+            </p>
+          </div>
+        <% end %>
       </div>
-      <% end %>
-  </div>
-  <div class="container">
-    <div class="card">
-    <div class="card-content">
-    <%= yield %>
-  </div>
-</div>
-
-  </div>
-</body>
+      <div class="container">
+        <div class="card">
+          <div class="card-content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+  </body>
 </html>
+
