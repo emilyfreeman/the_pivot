@@ -8,9 +8,9 @@ class UserViewIndexPageTest < ActionDispatch::IntegrationTest
                        password: "password"
                        )
 
-    role = Role.create(name: "business_admin")
+    role = Role.create(name: "registered_user")
     user.roles << role
-    
+
     store = user.stores.create(name: "Adam's Apples",
                        status: "approved")
 
