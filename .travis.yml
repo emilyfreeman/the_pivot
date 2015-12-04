@@ -3,5 +3,6 @@ rvm:
  - "2.2.1"
 services:
   - postgresql
+cache: bundler
 # May need to uncomment following line
 # script: bundle exec rake test
