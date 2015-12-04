@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20151203234920) do
     t.datetime "updated_at",      null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "bio"
+    t.text     "bio"
   end
 
   add_foreign_key "item_orders", "items"
