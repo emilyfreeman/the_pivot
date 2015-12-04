@@ -9,19 +9,26 @@ SimpleCov.start("rails")
 
 class ActiveSupport::TestCase
 
+  def setup
+    Role.create(name: "registered_user")
+    Role.create(name: "business_admin")
+    Role.create(name: "platform_admin")
+  end
+
   def create_user
-    User.create(username: "John", password: "Password", role: 0)
+    User.create(username: "John", password: "Password")
+    user.roles << Role.find_by(name: "registered_user")
   end
 
   def create_shop
-    category_1 = Oil.create(name: "Lard")
-    category_2 = Oil.create(name: "Coconut Oil")
+    category_1 = Category.create(name: "Lard")
+    category_2 = Category.create(name: "Coconut Category")
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     Item.create(name: "Dang Coconut", price: 17,
-                description: "Dang, these are good", oil_id: category_2.id)
+                description: "Dang, these are good", category_id: category_2.id)
     Item.create(name: "Old Items", price: 20,
-                description: "Super yummy", oil_id: category_1.id,
+                description: "Super yummy", category_id: category_1.id,
                 status: "retired")
   end
 
@@ -44,6 +51,13 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def setup
+    Role.create(name: "registered_user")
+    Role.create(name: "business_admin")
+    Role.create(name: "platform_admin")
+  end
+
   def teardown
     reset_session!
   end
@@ -54,23 +68,25 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    User.create(username: "John", password: "Password", role: 0)
+    user = User.create(username: "John", password: "Password")
+    user.roles << Role.find_by(name: "registered_user")
   end
 
   def create_admin
-    User.create(username: "admin", password: "password", role: 1)
+    admin = User.create(username: "admin", password: "password")
+    admin.roles << Role.find_by(name: "business_admin")
   end
 
   def create_cart_for_visitor
     visit items_path
-    within("#slotaitems") do
+    within("#items") do
       click_button "Add to Cart"
     end
   end
 
   def login_user
     visit "/"
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
     fill_in "Username", with: "John"
@@ -80,7 +96,7 @@ class ActionDispatch::IntegrationTest
 
   def login_admin
     visit "/"
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
     fill_in "Username", with: "admin"
@@ -89,14 +105,14 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_shop
-    category_1 = Oil.create(name: "Lard")
-    category_2 = Oil.create(name: "Coconut Oil")
+    category_1 = Category.create(name: "Lard")
+    category_2 = Category.create(name: "Coconut Category")
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     Item.create(name: "Dang Coconut", price: 17,
-                description: "Dang, these are good", oil_id: category_2.id)
+                description: "Dang, these are good", category_id: category_2.id)
     Item.create(name: "Old Items", price: 20,
-                description: "Super yummy", oil_id: category_1.id,
+                description: "Super yummy", category_id: category_1.id,
                 status: "retired")
   end
 

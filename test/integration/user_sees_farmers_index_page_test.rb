@@ -3,19 +3,11 @@ require "test_helper"
 class UserSeesFarmerIndexTest < ActionDispatch::IntegrationTest
 
   def setup
-    # user = User.create(first_name: "John",
-    #                    last_name: "Slota",
-    #                    username: "john",
-    #                    password: "password",
-    #                    role: 1)
-    #
-    # store = user.stores.create(name: "Adam's Apples",
-    #                    status: "approved")
     visit '/farmers'
   end
 
   test 'user visits farmer index page' do
-    setup
+    skip
     assert_equal farmers_path, current_path
     within(".farmers") do
       assert page.has_content?("Adam's Apples")

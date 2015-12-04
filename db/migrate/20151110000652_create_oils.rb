@@ -1,4 +1,4 @@
-class CreateOils < ActiveRecord::Migration
+class CreateCategorys < ActiveRecord::Migration
   def change
     create_table :oils do |t|
       t.string :name
