@@ -54,11 +54,18 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    User.create(username: "John", password: "Password", role: 0)
+    User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
   end
 
   def create_admin
-    User.create(username: "admin", password: "password", role: 1)
+    Role.create(name: "business_admin")
+    @admin = User.create(username: "admin", password: "password")
+    @admin.roles << Role.find_by(name:"business_admin")
+  end
+
+  def create_store
+    store = Store.create(name: "GoatSoap")
+    store.users << @user
   end
 
   def create_cart_for_visitor
@@ -73,14 +80,14 @@ class ActionDispatch::IntegrationTest
     within(".right") do
       click_link "Login"
     end
-    fill_in "Username", with: "John"
-    fill_in "Password", with: "Password"
+    fill_in "Username", with: "emily"
+    fill_in "Password", with: "password"
     click_button "Login"
   end
 
   def login_admin
     visit "/"
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
     fill_in "Username", with: "admin"
