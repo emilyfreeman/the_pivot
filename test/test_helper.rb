@@ -65,7 +65,7 @@ class ActionDispatch::IntegrationTest
 
   def create_store
     store = Store.create(name: "GoatSoap")
-    store.users << @user
+    store.users << @admin
   end
 
   def create_cart_for_visitor
