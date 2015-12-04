@@ -1,5 +1,5 @@
-class RemoveOilIdFromItems < ActiveRecord::Migration
+class RemoveCategoryIdFromItems < ActiveRecord::Migration
   def change
-    remove_column :items, :oil_id
+    remove_column :items, :category_id
   end
 end

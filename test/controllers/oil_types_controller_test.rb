@@ -1,4 +1,4 @@
 require "test_helper"
 
-class OilTypesControllerTest < ActionController::TestCase
+class CategoryTypesControllerTest < ActionController::TestCase
 end
