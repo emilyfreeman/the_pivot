@@ -1,0 +1,16 @@
+<center><h2>Oil Types</h2></center>
+
+<div id="categories">
+  <div class="row">
+    <% @categories.each do |category| %>
+    <div class="col m4" id="grayscale">
+      <div class="card" id="<%=category.slug%>">
+        <%= category.name %>
+        <div class="card-image">
+          Image goes here
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
