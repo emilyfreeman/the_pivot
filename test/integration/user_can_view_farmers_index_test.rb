@@ -5,12 +5,13 @@ class UserCanViewFarmersIndexTest < ActionDispatch::IntegrationTest
     user = User.create(first_name: "John",
                        last_name: "Slota",
                        username: "john",
-                       password: "password",
-                       role: 1)
+                       password: "password")
 
-    store = user.stores.create(name: "Adam's Apples",
+    store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
                                status: "approved")
+
+    store.users << user
 
     cat = Category.create(name: "fruit")
 

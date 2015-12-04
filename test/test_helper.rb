@@ -9,8 +9,15 @@ SimpleCov.start("rails")
 
 class ActiveSupport::TestCase
 
+  def setup
+    Role.create(name: "registered_user")
+    Role.create(name: "business_admin")
+    Role.create(name: "platform_admin")
+  end
+
   def create_user
-    User.create(username: "John", password: "Password", role: 0)
+    User.create(username: "John", password: "Password")
+    user.roles << Role.find_by(name: "registered_user")
   end
 
   def create_shop
@@ -44,6 +51,13 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def setup
+    Role.create(name: "registered_user")
+    Role.create(name: "business_admin")
+    Role.create(name: "platform_admin")
+  end
+
   def teardown
     reset_session!
   end
@@ -55,12 +69,12 @@ class ActionDispatch::IntegrationTest
 
   def create_user
     user = User.create(username: "John", password: "Password")
-    user.roles << Role.find_by(name:"registered_user")
+    user.roles << Role.find_by(name: "registered_user")
   end
 
   def create_admin
     admin = User.create(username: "admin", password: "password")
-    admin.roles << Role.find_by(name:"business_admin")
+    admin.roles << Role.find_by(name: "business_admin")
   end
 
   def create_cart_for_visitor
