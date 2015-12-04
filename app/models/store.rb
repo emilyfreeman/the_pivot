@@ -6,6 +6,5 @@ class Store < ActiveRecord::Base
 
   def categories(store)
     Category.joins(:items).where(items: { store_id: store.id }).pluck(:name).uniq
-    # binding.pry
   end
 end

@@ -47,18 +47,9 @@ class Seed
         status: "accepted",
         bio: Faker::Lorem.paragraph
       )
-      puts "Store #{i+1}: #{store.name} created!"
+      puts "Store #{i}: #{store.name} created!"
     end
   end
-
-  # def generate_store_items
-  #   20.times do |i|
-  #     store = Store.find(i+1)
-  #     puts "Store #{i+1} orignally has #{store.items.count} items!"
-  #     add_items(store)
-  #     puts "Store #{i+1} now has #{store.items.count} items!"
-  #   end
-  # end
 
   def generate_users
     10.times do |i|
@@ -93,14 +84,6 @@ class Seed
     store = Store.find(count + 1)
     store.users << user
   end
-
-  # def add_items(store)
-  #   5.times do |i|
-  #     item = Item.find(rand(1..Item.count))
-  #     store.items << item
-  #     puts "#{i+1}: Added item #{item.name} to store #{store.id}."
-  #   end
-  # end
 
 end
 
