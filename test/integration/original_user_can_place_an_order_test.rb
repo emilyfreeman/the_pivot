@@ -4,19 +4,19 @@ class UserCanPlaceAnOrderTest < ActionDispatch::IntegrationTest
   test "registered user can place an order" do
     skip
     # TWILIO ERROR, unskip or fix
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
 
     Item.create(name: "Slotaitems",
                 price: 20,
                 description: "Super yummy",
-                oil_id: category_1.id)
+                category_id: category_1.id)
 
     User.create(username: "John",
                 password: "Password")
 
     visit "/"
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
 
@@ -27,7 +27,7 @@ class UserCanPlaceAnOrderTest < ActionDispatch::IntegrationTest
 
     visit items_path
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 

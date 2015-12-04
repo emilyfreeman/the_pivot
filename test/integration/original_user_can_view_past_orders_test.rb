@@ -2,10 +2,10 @@ require "test_helper"
 
 class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
   test "user can view all past orders" do
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     item_1 =
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     user = User.create(username: "John", password: "Password")
     order = user.orders.create(total_price: 20)
     order.item_orders.create(item_id: item_1.id,
@@ -13,7 +13,7 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
 
     visit "/"
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
 
@@ -28,10 +28,10 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
   end
 
   test "user can view a singular past order" do
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     item_1 =
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     user = User.create(username: "John", password: "Password")
     order = user.orders.create(status: "Ordered", total_price: 20)
     order.item_orders.create(item_id: item_1.id,
@@ -39,7 +39,7 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
 
     visit "/"
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Login"
     end
 

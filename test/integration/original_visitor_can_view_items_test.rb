@@ -32,7 +32,7 @@ class VisitorCanViewItemsTest < ActionDispatch::IntegrationTest
     click_link "Return to oils"
 
     within("#coconut-oil") do
-      click_link "Coconut Oil"
+      click_link "Coconut Category"
     end
 
     assert current_path, '/coconut-oil'

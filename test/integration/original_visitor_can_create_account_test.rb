@@ -4,24 +4,24 @@ class VisitorCanCreateAccountTest < ActionDispatch::IntegrationTest
 
   test "visitor can create account" do
 
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
 
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
 
     visit items_path
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 
     visit "/"
 
-    within (".right") do
+    within (".nav-wrapper") do
       assert page.has_content?("Login")
       assert page.has_content?("Create Account")
     end
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Create Account"
     end
 
@@ -40,7 +40,7 @@ class VisitorCanCreateAccountTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Slotaitems")
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Logout"
     end
 

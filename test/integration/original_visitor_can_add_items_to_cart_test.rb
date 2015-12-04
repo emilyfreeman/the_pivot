@@ -3,33 +3,33 @@ require "test_helper"
 class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
 
   test "visitor can add items to cart from index" do
-    category_1 = Oil.create(name: "Lard")
-    category_2 = Oil.create(name: "Coconut Oil")
+    category_1 = Category.create(name: "Lard")
+    category_2 = Category.create(name: "Coconut Category")
 
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     Item.create(name: "Trader Joe's BBQ", price: 15,
                 description: "I'd trade slota for these!",
-                oil_id: category_2.id)
+                category_id: category_2.id)
     Item.create(name: "Dang Coconut", price: 17,
-                description: "Dang, these are good", oil_id: category_2.id)
+                description: "Dang, these are good", category_id: category_2.id)
     Item.create(name: "Lard Yummies", price: 19,
-                description: "Chock Full of Lard", oil_id: category_1.id)
+                description: "Chock Full of Lard", category_id: category_1.id)
 
     visit items_path
 
-    within(".right") do
+    within(".nav-wrapper") do
       assert page.has_content?("Cart (0)")
     end
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 
     assert page.has_content?("Added Slotaitems to cart.")
     assert page.has_content?("Cart (1)")
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Cart"
     end
 
@@ -42,24 +42,24 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
   end
 
   test "can add multiple items to cart" do
-    category_1 = Oil.create(name: "Lard")
-    category_2 = Oil.create(name: "Coconut Oil")
+    category_1 = Category.create(name: "Lard")
+    category_2 = Category.create(name: "Coconut Category")
 
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     Item.create(name: "Trader Joe's BBQ", price: 15,
                 description: "I'd trade slota for these!",
-                oil_id: category_2.id)
+                category_id: category_2.id)
     Item.create(name: "Dang Coconut", price: 17,
-                description: "Dang, these are good", oil_id: category_2.id)
+                description: "Dang, these are good", category_id: category_2.id)
     Item.create(name: "Lard Yummies", price: 19,
-                description: "Chock Full of Lard", oil_id: category_1.id)
+                description: "Chock Full of Lard", category_id: category_1.id)
 
     visit items_path
 
     assert page.has_content?("Cart (0)")
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 
@@ -70,7 +70,7 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
       click_button "Add to Cart"
     end
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Cart"
     end
 
@@ -88,31 +88,31 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
   end
 
   test "can add item to cart from category show pages" do
-    category_1 = Oil.create(name: "Lard")
-    category_2 = Oil.create(name: "Coconut Oil")
+    category_1 = Category.create(name: "Lard")
+    category_2 = Category.create(name: "Coconut Category")
 
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     Item.create(name: "Trader Joe's BBQ", price: 15,
                 description: "I'd trade slota for these!",
-                oil_id: category_2.id)
+                category_id: category_2.id)
     Item.create(name: "Dang Coconut", price: 17,
-                description: "Dang, these are good", oil_id: category_2.id)
+                description: "Dang, these are good", category_id: category_2.id)
     Item.create(name: "Lard Yummies", price: 19,
-                description: "Chock Full of Lard", oil_id: category_1.id)
+                description: "Chock Full of Lard", category_id: category_1.id)
 
     visit "/lard"
 
     assert page.has_content?("Cart (0)")
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 
     assert page.has_content?("Added Slotaitems to cart.")
     assert page.has_content?("Cart (1)")
 
-    within(".right") do
+    within(".nav-wrapper") do
       click_link "Cart"
     end
 

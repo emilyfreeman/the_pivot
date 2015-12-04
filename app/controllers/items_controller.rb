@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.take(6)
+    @items = Item.all
     @categories = Category.all
-    @stores = Store.take(6)
   end
 
   def show

@@ -5,7 +5,7 @@ class ItemRemovedFromCartWhenQuantityHitsZeroTest < ActionDispatch::IntegrationT
     create_shop
     visit items_path
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_button "Add to Cart"
     end
 
@@ -15,7 +15,7 @@ class ItemRemovedFromCartWhenQuantityHitsZeroTest < ActionDispatch::IntegrationT
 
     visit cart_items_path
 
-    within ('#slotaitems') do
+    within ('#all-items') do
       assert page.has_content?("Slotaitems")
       within ('.quantity') do
         assert page.has_content?("1")

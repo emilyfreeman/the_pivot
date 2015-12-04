@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def oils
-    Oil.all
+    Category.all
   end
 
   def current_user

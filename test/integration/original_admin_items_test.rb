@@ -10,9 +10,9 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
   test "logged in admin sees items index" do
     create_admin
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
 
     ApplicationController.any_instance.stubs(:current_user).returns(@admin)
     visit admin_items_path
@@ -33,13 +33,13 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
   test "admin can edit item" do
     create_admin
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     ApplicationController.any_instance.stubs(:current_user).returns(@admin)
 
     visit admin_items_path
-    within "#slotaitems" do
+    within "#all-items" do
       click_link "Edit"
     end
 
@@ -52,13 +52,13 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
   test "admin cannot remove name from item" do
     create_admin
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     Item.create(name: "Slotaitems", price: 20,
-                description: "Super yummy", oil_id: category_1.id)
+                description: "Super yummy", category_id: category_1.id)
     ApplicationController.any_instance.stubs(:current_user).returns(@admin)
 
     visit admin_items_path
-    within "#slotaitems" do
+    within "#all-items" do
       click_link "Edit"
     end
 
@@ -70,7 +70,7 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
   test "admin can add item" do
     create_admin
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     ApplicationController.any_instance.stubs(:current_user).returns(@admin)
 
     visit admin_items_path
@@ -89,7 +89,7 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
   test "admin cannot add item without a name" do
     create_admin
-    category_1 = Oil.create(name: "Lard")
+    category_1 = Category.create(name: "Lard")
     ApplicationController.any_instance.stubs(:current_user).returns(@admin)
 
     visit admin_items_path
@@ -108,7 +108,7 @@ class AdminItemsTest < ActionDispatch::IntegrationTest
 
     visit admin_items_path
 
-    within("#slotaitems") do
+    within("#all-items") do
       click_link "Delete"
     end
 
