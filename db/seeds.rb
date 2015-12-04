@@ -3,8 +3,9 @@ class Seed
     seed = Seed.new
     seed.generate_roles
     seed.generate_categories
-    seed.generate_items
     seed.generate_stores
+    seed.generate_items
+    seed.generate_store_items
     seed.generate_users
     seed.generate_admins
   end
@@ -34,7 +35,7 @@ class Seed
         category_id: rand(1..Category.count),
         store_id: rand(1..Store.count)
         )
-        
+
       puts "Item #{i}: #{item.name} created!"
     end
   end
@@ -47,8 +48,14 @@ class Seed
         status: "accepted",
         bio: Faker::Lorem.paragraph
       )
-      add_items(store)
       puts "Store #{i}: Store for #{user.name} created!"
+    end
+  end
+
+  def generate_store_items
+    20.times do |i|
+      store = Store.find(i+1)
+      add_items(store)
     end
   end
 
@@ -68,14 +75,6 @@ class Seed
     admins = User.joins(:roles).where(roles: { name: "business_admin" })
     admins.each do |admin|
       add_stores(admin)
-      # admin = User.create!(
-      #   first_name: Faker::Name.first_name,
-      #   last_name: Faker::Name.last_name,
-      #   username: Faker::Internet.user_name,
-      #   password_digest: Faker::Internet.password
-      # )
-      # add_roles(admin)
-      # add_stores(admin)
       puts "User #{admin.first_name}: stores created!"
     end
   end
