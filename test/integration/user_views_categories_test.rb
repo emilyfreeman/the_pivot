@@ -16,7 +16,7 @@ class UserViewsCategoriesTest < ActionDispatch::IntegrationTest
 
   test "user can view all categories on the category index page" do
     visit '/categories'
-    within("#categories") do
+    within(".categories") do
       assert page.has_content?("Fruits")
       assert page.has_content?("Wines")
       assert page.has_content?("Salsas")
