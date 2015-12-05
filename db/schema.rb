@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151204035330) do
     t.datetime "updated_at", null: false
     t.string   "status"
     t.string   "bio"
+    t.string   "slug"
   end
 
   create_table "user_roles", force: :cascade do |t|

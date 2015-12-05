@@ -17,15 +17,17 @@ Rails.application.routes.draw do
   end
 
   namespace :stores, path: ":store", as: :store do
-    resources :items,  only:  [:show, :index]
-    resources :orders, only: [:show, :index]
+    resources :items,  only: [:show, :index]
+    resources :orders, only: [:show, :indez]
   end
 
   get '/farmers', to: 'stores#index'
+
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#show'
   get '/cart', to: 'cart_items#index'
+  get '/:store', to: 'stores#show'
 end

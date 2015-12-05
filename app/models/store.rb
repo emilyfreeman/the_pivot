@@ -4,7 +4,20 @@ class Store < ActiveRecord::Base
   # has_many :users, through: :user_stores
   has_many :items
 
-  def categories(store)
+  has_many :categories, through: :items
+
+  validates :name, presence: true
+  validates :slug, presence: true,
+                   uniqueness: true
+
+  before_validation :generate_slug
+
+  def generate_slug
+    self.slug = self.name.parameterize
+  end
+
+  # TODO: Refactor
+  def category_names(store)
     Category.joins(:items).where(items: { store_id: store.id }).pluck(:name).uniq
   end
 end

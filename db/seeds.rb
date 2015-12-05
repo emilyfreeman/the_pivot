@@ -32,8 +32,8 @@ class Seed
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
         image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
-        category_id: rand(1..Category.count),
-        store_id: rand(1..Store.count)
+        category_id: Random.new.rand(1..Category.count),
+        store_id: Random.new.rand(1..Store.count)
         )
 
       puts "Item #{i}: #{item.name} created!"
@@ -49,6 +49,13 @@ class Seed
         bio: Faker::Lorem.paragraph
       )
       puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_store_items
+    20.times do |i|
+      store = Store.find(i+1)
+      add_items(store)
     end
   end
 
@@ -87,6 +94,12 @@ class Seed
   end
 
   private
+
+  def add_stores(user)
+    store = Store.offset(Random.new.rand(1..20)).first
+    user.store = store
+    puts "Added item #{store.name} to user #{user.id}."
+  end
 
   def add_stores(user, count)
     store = Store.find(count + 1)
