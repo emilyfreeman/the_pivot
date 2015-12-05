@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  post "notifications/notify" => "notifications#notify"
-  post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
+
+  namespace :stores, path: ":store", as: :store do
+    resources :items,  only: [:show, :index]
+    resources :orders, only: [:show, :indez]
+  end
 
   resources :categories, only: [:index, :show], param: :slug
   resources :oils, only: [:index, :show], param: :slug
@@ -16,10 +19,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :update]
   end
 
-  namespace :stores, path: ":store", as: :store do
-    resources :items,  only: [:show, :index]
-    resources :orders, only: [:show, :indez]
-  end
 
   get '/farmers', to: 'stores#index'
 
