@@ -80,12 +80,6 @@ class Seed
 
   private
 
-  def add_stores(user)
-    store = Store.offset(Random.new.rand(1..20)).first
-    user.store = store
-    puts "Added item #{store.name} to user #{user.id}."
-  end
-
   def add_stores(user, count)
     store = Store.find(count + 1)
     store.users << user
