@@ -1,13 +1,38 @@
-<h2>
-Dashboard for <%= current_user.username %>
-</h2>
+<div class="row">
+  <div class="col s4">
+    <div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Farmer,_Nicaragua.jpg" class="circle responsive-img">
+    </div>
+  </div>
+  <div class="col s8 center">
+    <div class= "">
+      <h3>Profile for</h3><h4><%= current_user.username %></h4>
+    </div>
+  </div>
+</div>
 
-<h4>
-<%= link_to "Edit Account", edit_user_path(current_user) %> |
-<%= link_to "View Cart", cart_path %>
-</h4>
+<div>
+  <h6>
+    <%= link_to "Edit Account", edit_user_path(current_user) %> |
+    <%= link_to "View Cart", cart_path %> |
+    <%= link_to "My Store" %>
+  </h6>
+</div>
 
-<% if @orders %>
+<div class="row">
+  <div class='col s12'>
+    <div>
+      <h5>My Bio</h5>
+    </div>
+    <div>
+      <h6 id='user-bio'><%= @user.bio %></h6>
+    </div>
+  </div>
+</div>
+
+<% if @user.orders %>
+<div>
   <h4 id='order-history'>Your past orders:</h4>
-  <%= render partial: 'orders/orders_table' %>
-<% end %>
+    <%= render partial: 'orders/orders_table' %>
+    <% end %>
+</div>
