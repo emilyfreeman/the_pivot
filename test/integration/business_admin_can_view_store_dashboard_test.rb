@@ -4,11 +4,15 @@
 
 class BusinessAdminViewStoreDashboard < ActionDispatch::IntegrationTest
   test "business admin can view business info" do
-    admin = create_admin_and_store.first
-    store = admin.store
+    admin = User.create(username: "admin", password: "password")
+
+    admin.roles.create(name: "business_admin")
+    byebug
+
+    store = Store.create(name: "GoatSoap")
+    store.users << admin
 
     login_admin
-
     visit store_dashboard_index_path(store: store)
 
     within("#business-info") do
