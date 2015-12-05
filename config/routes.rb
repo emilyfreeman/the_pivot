@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :stores, path: ":store", as: :store do
+    resources :dashboard, only: [:show, :index]
     resources :items,  only: [:show, :index]
-    resources :orders, only: [:show, :indez]
+    resources :orders, only: [:show, :index]
   end
 
   get '/farmers', to: 'stores#index'

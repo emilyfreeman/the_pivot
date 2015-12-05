@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :username, presence: true,
                        uniqueness: true
 
+  def platform_admin?
+    roles.exists?(name: "platform_admin")
+  end
+
   def registered_user?
     roles.exists?(name: "registered_user")
   end
