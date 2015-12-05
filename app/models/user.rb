@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     roles.exists?(name: "platform_admin")
   end
 
-  def registered_user?
+  def registered_user
     roles.exists?(name: "registered_user")
   end
 
@@ -23,5 +23,5 @@ class User < ActiveRecord::Base
     roles.exists?(name: "store_admin")
   end
 
-  enum role: %w(default admin)
+  # enum role: %w(default admin)
 end

@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless authorized?
       redirect_to root_url
-      flash[:danger] = "Stranger, danger! I don't know you!"
+      # flash[:danger] = "Stranger, danger! I don't know you!"
     end
   end
 
