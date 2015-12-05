@@ -90,11 +90,9 @@ class Seed
   private
 
   def add_stores(user)
-    2.times do |i|
-      store = Store.offset(Random.new.rand(1..20))
-      user.stores << store
-      puts "#{i}: Added item #{store.name} to user #{user.id}."
-    end
+    store = Store.offset(Random.new.rand(1..20)).first
+    user.store = store
+    puts "Added item #{store.name} to user #{user.id}."
   end
 
   def add_items(store)

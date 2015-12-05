@@ -3,8 +3,18 @@ require 'test_helper'
 class UserCanViewStoreItemsTest < ActionDispatch::IntegrationTest
 
   def setup
+    fruit = Category.create!(name: "Fruit")
+    vegetable = Category.create!(name: "Vegetable")
     store = Store.create!(name: "Slota's farm",
                           bio: "some cool bio")
+    apples = fruit.items.create!(name: "Apple")
+    oranges = fruit.items.create!(name: "Orange")
+    lettuce = vegetable.items.create!(name: "Lettuce")
+    carrots = vegetable.items.create!(name: "Carrots")
+    store.items << apples
+    store.items << oranges
+    store.items << lettuce
+    store.items << carrots
   end
 
   test "user can view specific store items index" do
@@ -23,11 +33,18 @@ class UserCanViewStoreItemsTest < ActionDispatch::IntegrationTest
     end
 
     within(".categories") do
-      assert page.has_content?("")
+      assert page.has_content?("Fruit")
+      assert page.has_content?("Vegetable")
     end
 
-    within(".items") do
-      assert page.has_content?("")
+    within(".Fruit-items") do
+      assert page.has_content?("Apple")
+      assert page.has_content?("Orange")
+    end
+
+    within(".Vegetable-items") do
+      assert page.has_content?("Lettuce")
+      assert page.has_content?("Carrots")
     end
   end
 end

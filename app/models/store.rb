@@ -4,6 +4,8 @@ class Store < ActiveRecord::Base
   # has_many :users, through: :user_stores
   has_many :items
 
+  has_many :categories, through: :items
+
   validates :name, presence: true
   validates :slug, presence: true,
                    uniqueness: true
@@ -14,7 +16,8 @@ class Store < ActiveRecord::Base
     self.slug = self.name.parameterize
   end
 
-  def categories(store)
+  # TODO: Refactor
+  def category_names(store)
     Category.joins(:items).where(items: { store_id: store.id }).pluck(:name).uniq
   end
 end

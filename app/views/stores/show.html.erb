@@ -1,11 +1,23 @@
 <div class="parallax-container">
-  <div class="parallax">
-    <%= image_tag "produce-tomatos-web.jpg" %>
-  </div>
+  <div class="parallax"><img src="assets/images/produce-tomatos-web.jpg">
+</div>
 </div>
 <div class="section white">
   <div class="row container">
+    <div class="center profile-pic circle">
+      <%= image_tag "farmer-pic-1.jpg", :class => "circle" %>
     <h2 class="header greeting"><%= @store.name.capitalize %></h2>
-    <p class="grey-text text-darken-3 lighten-3 bio"><%= @store.bio %></p>
+    <p class="grey-text text-lighten bio"><%= @store.bio %></p>
+    </div>
+  </div>
+  <div class="row container categories">
+    <% @store.categories.uniq.each do |category| %>
+      <h5><%= category.name %></h5>
+        <ul class="<%= category.name %>-items">
+          <% category.items.each do |item| %>
+            <li><%= item.name %></li>
+          <% end %>
+        </ul>
+    <% end %>
   </div>
 </div>
