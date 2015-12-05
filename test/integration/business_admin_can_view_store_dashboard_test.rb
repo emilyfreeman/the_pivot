@@ -8,6 +8,8 @@ class BusinessAdminViewStoreDashboard < ActionDispatch::IntegrationTest
     store = create_store
     login_admin
 
+    visit store_dashboard_index
+
     within("#business-info") do
       assert page.has_content? "#{store.name}"
     end

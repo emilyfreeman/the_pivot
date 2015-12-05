@@ -68,7 +68,6 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-<<<<<<< HEAD
     User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
   end
 
@@ -81,15 +80,6 @@ class ActionDispatch::IntegrationTest
   def create_store
     store = Store.create(name: "GoatSoap")
     store.users << @admin
-=======
-    user = User.create(username: "John", password: "Password")
-    user.roles << Role.find_by(name: "registered_user")
-  end
-
-  def create_admin
-    admin = User.create(username: "admin", password: "password")
-    admin.roles << Role.find_by(name: "business_admin")
->>>>>>> master
   end
 
   def create_cart_for_visitor
