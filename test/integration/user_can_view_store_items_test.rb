@@ -11,10 +11,7 @@ class UserCanViewStoreItemsTest < ActionDispatch::IntegrationTest
     oranges = fruit.items.create!(name: "Orange")
     lettuce = vegetable.items.create!(name: "Lettuce")
     carrots = vegetable.items.create!(name: "Carrots")
-    store.items << apples
-    store.items << oranges
-    store.items << lettuce
-    store.items << carrots
+    store.items.push(apples, oranges, lettuce, carrots)
   end
 
   test "user can view specific store items index" do
