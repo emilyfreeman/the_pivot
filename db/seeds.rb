@@ -32,8 +32,8 @@ class Seed
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
         image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
-        category_id: rand(1..Category.count),
-        store_id: rand(1..Store.count)
+        category_id: Random.new.rand(1..Category.count),
+        store_id: Random.new.rand(1..Store.count)
         )
 
       puts "Item #{i}: #{item.name} created!"
@@ -42,13 +42,20 @@ class Seed
 
   def generate_stores
     20.times do |i|
-      user = User.offset(Random.new.rand(1..20))
+      # user = User.offset(Random.new.rand(1..20))
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
         bio: Faker::Lorem.paragraph
       )
-      puts "Store #{i}: Store for #{user.name} created!"
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_store_items
+    20.times do |i|
+      store = Store.find(i+1)
+      add_items(store)
     end
   end
 
@@ -60,21 +67,28 @@ class Seed
   end
 
   def generate_users
-    50.times do |i|
+    10.times do |i|
       user = User.create!(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        username: Faker::Internet.user_name + "#{i}",
+        password_digest: Faker::Internet.password,
+        bio: Faker::Lorem.paragraph
+      )
+      user.roles << Role.find(3)
+    end
+  end
+
+  def generate_admins
+    20.times do |i|
+      admin = User.create!(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         username: Faker::Internet.user_name + "#{i}",
         password_digest: Faker::Internet.password
       )
-      user.roles << Role.find(Random.new.rand(1..3))
-    end
-  end
-
-  def generate_admins
-    admins = User.joins(:roles).where(roles: { name: "business_admin" })
-    admins.each do |admin|
-      add_stores(admin)
+      admin.roles << Role.find(2)
+      add_stores(admin, i)
       puts "User #{admin.first_name}: stores created!"
     end
   end
@@ -82,11 +96,14 @@ class Seed
   private
 
   def add_stores(user)
-    2.times do |i|
-      store = Store.offset(Random.new.rand(1..20))
-      user.stores << store
-      puts "#{i}: Added item #{store.name} to user #{user.id}."
-    end
+    store = Store.offset(Random.new.rand(1..20)).first
+    user.store = store
+    puts "Added item #{store.name} to user #{user.id}."
+  end
+
+  def add_stores(user, count)
+    store = Store.find(count + 1)
+    store.users << user
   end
 
   def add_items(store)

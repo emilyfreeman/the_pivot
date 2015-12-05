@@ -12,15 +12,13 @@
 
   <%= render partial: '/shared/nav' %>
 
-
 <div class="container">
     <% flash.each do |type, msg| %>
-    <div class="card">
-      <p>
-        <center style='color:green'><%= content_tag :div, msg.html_safe %></center>
-      </p>
-    </div>
-
+      <div class="card">
+        <p>
+          <center style='color:green'><%= content_tag :div, msg.html_safe %></center>
+        </p>
+      </div>
     <% end %>
 </div>
     <%= yield %>

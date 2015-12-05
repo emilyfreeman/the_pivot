@@ -20,6 +20,7 @@ var loaded = function(){
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $(".button-collapse").sideNav();
+    $('.parallax').parallax();
 
     var $chips = $('.chip');
 

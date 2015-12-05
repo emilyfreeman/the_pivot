@@ -1,6 +1,26 @@
 html {
   font-family: 'Oswald', sans-serif;
- }
+}
+
+.parallax-container {
+  height: 270px;
+}
+
+.parallax img {
+  width: 100%;
+}
+
+.brand-logo {
+  margin-left: 0.5cm;
+}
+
+.profile-pic img {
+  max-height: 150px;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
 
  #cart {
   font-size: 2rem;

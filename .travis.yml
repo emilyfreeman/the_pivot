@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+ - "2.2.1"
+services:
+  - postgresql
+cache: bundler
+before_script: bundle exec rake db:setup
