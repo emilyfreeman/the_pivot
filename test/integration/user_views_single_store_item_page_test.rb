@@ -15,7 +15,6 @@ class UserViewsSingleStoreItemTest < ActionDispatch::IntegrationTest
 
   test "user can visit a individual store item" do
     visit "adam-s-apples/items/#{@store.items.first.id}"
-
     within("#item-name") do
       assert page.has_content?("Apple")
     end
@@ -27,7 +26,7 @@ class UserViewsSingleStoreItemTest < ActionDispatch::IntegrationTest
     within("#item-name") do
       assert page.has_content?("6.0")
     end
-    
+
     within("#item-name") do
       assert page.has_content?("Fruit")
     end
