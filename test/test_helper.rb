@@ -10,9 +10,6 @@ SimpleCov.start("rails")
 class ActiveSupport::TestCase
 
   def setup
-    Role.create(name: "registered_user")
-    Role.create(name: "business_admin")
-    Role.create(name: "platform_admin")
   end
 
   def create_user
@@ -53,9 +50,7 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def setup
-    Role.create(name: "registered_user")
-    Role.create(name: "business_admin")
-    Role.create(name: "platform_admin")
+
   end
 
   def teardown
