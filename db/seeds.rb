@@ -5,9 +5,9 @@ class Seed
     seed.generate_categories
     seed.generate_stores
     seed.generate_items
-    seed.generate_store_items
     seed.generate_users
     seed.generate_admins
+    seed.generate_one_admin
   end
 
   def generate_roles
@@ -52,20 +52,6 @@ class Seed
     end
   end
 
-  def generate_store_items
-    20.times do |i|
-      store = Store.find(i+1)
-      add_items(store)
-    end
-  end
-
-  def generate_store_items
-    20.times do |i|
-      store = Store.find(i+1)
-      add_items(store)
-    end
-  end
-
   def generate_users
     10.times do |i|
       user = User.create!(
@@ -93,25 +79,23 @@ class Seed
     end
   end
 
-  private
-
-  def add_stores(user)
-    store = Store.offset(Random.new.rand(1..20)).first
-    user.store = store
-    puts "Added item #{store.name} to user #{user.id}."
+  def generate_one_admin
+      admin = User.create!(
+        first_name: "Justin",
+        last_name: "Pease",
+        username: "justinpease",
+        password: "password"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 1)
+      puts "User #{admin.first_name}: stores created!"
   end
+
+  private
 
   def add_stores(user, count)
     store = Store.find(count + 1)
     store.users << user
-  end
-
-  def add_items(store)
-    5.times do |i|
-      item = Item.offset(Random.new.rand(1..50))
-      store.items << item
-      puts "#{i}: Added item #{item.name} to store #{store.id}."
-    end
   end
 
 end
