@@ -10,9 +10,6 @@ SimpleCov.start("rails")
 class ActiveSupport::TestCase
 
   def setup
-    Role.create(name: "registered_user")
-    Role.create(name: "business_admin")
-    Role.create(name: "platform_admin")
   end
 
   def create_user
@@ -53,9 +50,7 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def setup
-    Role.create(name: "registered_user")
-    Role.create(name: "business_admin")
-    Role.create(name: "platform_admin")
+
   end
 
   def teardown
@@ -68,13 +63,16 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    user = User.create(username: "John", password: "Password")
-    user.roles << Role.find_by(name: "registered_user")
+    User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
   end
 
-  def create_admin
-    admin = User.create(username: "admin", password: "password")
-    admin.roles << Role.find_by(name: "business_admin")
+  def create_admin_and_store
+
+    @admin = User.create(username: "admin", password: "password")
+    # @admin.roles << Role.find_by(name:"business_admin")
+    @admin.roles.create(name: "business_admin")
+    @store = Store.create(name: "GoatSoap")
+    @store.users << @admin
   end
 
   def create_cart_for_visitor
@@ -89,8 +87,8 @@ class ActionDispatch::IntegrationTest
     within(".nav-wrapper") do
       click_link "Login"
     end
-    fill_in "Username", with: "John"
-    fill_in "Password", with: "Password"
+    fill_in "Username", with: "emily"
+    fill_in "Password", with: "password"
     click_button "Login"
   end
 

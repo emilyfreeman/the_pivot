@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   namespace :stores, path: ":store", as: :store do
+    resources :dashboard, only: [:show, :index]
     resources :items,  only: [:show, :index]
     resources :orders, only: [:show, :indez]
   end
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index, :show]
     resources :orders, only: [:index, :update]
   end
-
 
   get '/farmers', to: 'stores#index'
 
