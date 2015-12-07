@@ -50,7 +50,7 @@
     <div class="col s12 m2">
       <div class="card">
         <div class="card-image">
-          <a href="<%= store_path(store) %>"><img class="max-width" src=""></a>
+          <a href="<%= store_path(store) %>"><img class="max-width" src="<%= store.image.url(:thumb) %>"></a>
         </div>
         <div class="card-content">
           <p><%= store.name %></p>
