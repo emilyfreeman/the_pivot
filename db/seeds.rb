@@ -9,6 +9,7 @@ class Seed
     seed.generate_items
     seed.generate_users
     seed.generate_admins
+    seed.generate_one_admin
   end
 
   def generate_roles
@@ -78,6 +79,18 @@ class Seed
       add_stores(admin, i)
       puts "User #{admin.first_name}: stores created!"
     end
+  end
+
+  def generate_one_admin
+      admin = User.create!(
+        first_name: "Justin",
+        last_name: "Pease",
+        username: "justinpease",
+        password: "password"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 1)
+      puts "User #{admin.first_name}: stores created!"
   end
 
   private

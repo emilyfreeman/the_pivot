@@ -1,13 +1,15 @@
 <center><h2>Categories</h2></center>
 
-<div id="categories">
+<div class="categories">
   <div class="row">
     <% @categories.each do |category| %>
     <div class="col m4" id="grayscale">
       <div class="card" id="<%= category.slug %>">
-        <%= category.name %>
         <div class="card-image">
-          Image goes here
+          <%# Add Image if needed %>
+        </div>
+        <div class="card-content">
+          <h5> <%= link_to category.name, category %></h5>
         </div>
       </div>
     </div>

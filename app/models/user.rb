@@ -16,13 +16,16 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  def platform_admin?
+    roles.exists?(name: "platform_admin")
+  end
+
   def registered_user?
     roles.exists?(name: "registered_user")
   end
 
   def store_admin?
-    roles.exists?(name: "store_admin")
+    roles.exists?(name: "business_admin")
   end
 
-  enum role: %w(default admin)
 end
