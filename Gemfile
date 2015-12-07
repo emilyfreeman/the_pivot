@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 gem "figaro"
+gem "paperclip"
+gem "aws-sdk-v1"
 gem "materialize-sass"
 gem "twilio-ruby"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
@@ -28,7 +30,6 @@ gem "sdoc", "~> 0.4.0", group: :doc
 
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
-gem "paperclip"
 # Use Unicorn as the app server
 # gem "unicorn"
 gem "database_cleaner"
