@@ -3,7 +3,7 @@ class PermissionService
 
   attr_reader :user, :controller, :action
 
-  def_delegators :user, :platform_admin?, :store_admin?, :registered_user
+  def_delegators :user, :platform_admin?, :store_admin?, :registered_user?
 
   def initialize(user)
     @user = user || User.new

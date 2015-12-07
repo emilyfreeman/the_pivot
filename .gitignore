@@ -17,3 +17,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Don't need to add the filesystem image storage for paperclip
+/public/system
