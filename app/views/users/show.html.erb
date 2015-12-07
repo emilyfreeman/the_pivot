@@ -15,7 +15,9 @@
   <h6>
     <%= link_to "Edit Account", edit_user_path(current_user) %> |
     <%= link_to "View Cart", cart_path %> |
-    <%= link_to "My Store" %>
+    <% if current_user.store_admin? %>
+      <%= link_to "My Store Dashboard", store_dashboard_index_path(current_user.store) %>
+    <% end %>
   </h6>
 </div>
 
