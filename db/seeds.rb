@@ -1,3 +1,5 @@
+require_relative 'image_links'
+
 class Seed
   def self.start
     seed = Seed.new
@@ -34,7 +36,6 @@ class Seed
         category_id: Random.new.rand(1..Category.count),
         store_id: Random.new.rand(1..Store.count)
         )
-
       puts "Item #{i}: #{item.name} created!"
     end
   end
@@ -45,7 +46,8 @@ class Seed
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
-        bio: Faker::Lorem.paragraph
+        bio: Faker::Lorem.paragraph,
+        image: ImageLinks::FARMER_IMAGE_URLS[i]
       )
       puts "Store #{i}: #{store.name} created!"
     end

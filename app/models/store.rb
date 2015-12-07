@@ -1,7 +1,5 @@
 class Store < ActiveRecord::Base
   has_many :users
-  # has_many :user_stores
-  # has_many :users, through: :user_stores
   has_many :items
 
   has_many :categories, through: :items
@@ -11,6 +9,13 @@ class Store < ActiveRecord::Base
                    uniqueness: true
 
   before_validation :generate_slug
+
+  has_attached_file :image, styles: {
+    thumb: '100x100#',
+    square: '200x200#'
+  }
+
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def generate_slug
     self.slug = self.name.parameterize

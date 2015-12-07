@@ -5,7 +5,7 @@
 <div class="section white">
   <div class="row container">
     <div class="center profile-pic circle">
-      <%= image_tag "farmer-pic-1.jpg", :class => "circle" %>
+      <%= image_tag @store.image.url(:square) , :class => "circle" %>
     <h2 class="header greeting"><%= @store.name.capitalize %></h2>
     <p class="grey-text text-lighten bio"><%= @store.bio %></p>
     </div>
