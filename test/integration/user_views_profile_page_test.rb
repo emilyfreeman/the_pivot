@@ -15,11 +15,19 @@ class UserViewsProfileTest < ActionDispatch::IntegrationTest
     fill_in("Password", with: "password")
     click_button "Login"
     within("#order-history") do
-      assert page.has_content? "Your past orders"
+      byebug
+      assert page.has_content? ""
     end
+
+
 
     within("#user-bio") do
       assert page.has_content?("Hi my name John and this is my bio")
     end
   end
 end
+
+
+#######each order should have a link to the individual order
+
+### Item show page ('/:store/items/:id)
