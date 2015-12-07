@@ -26,15 +26,13 @@
 <div class="row categories">
   <% @categories.each do |category| %>
     <div class="col s12 m2">
-      <div class="card">
-        <div class="card-image">
-          <a href="<%= category_path(category.id) %>"><img class="max-width" src=""></a>
+      <a href="/categories/<%= category.slug %>">
+        <div class="card min-height-70">
+          <div class="card-content">
+            <p><%= category.name %></p>
+          </div>
         </div>
-        <div class="card-content">
-          <p><%= category.name %></p>
-        </div>
-
-      </div>
+      </a>
     </div>
   <% end %>
 </div>
