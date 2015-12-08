@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:show, :index]
     resources :items,  only: [:show, :index]
     resources :orders, only: [:show, :index]
+    resources :admins, only: [:new, :create]
   end
 
   resources :categories, only: [:index, :show], param: :slug
@@ -27,5 +28,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#show'
   get '/cart', to: 'cart_items#index'
-  get '/:store', to: 'stores#show' 
+  get '/:store', to: 'stores#show'
 end

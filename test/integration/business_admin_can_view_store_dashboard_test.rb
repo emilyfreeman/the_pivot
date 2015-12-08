@@ -1,8 +1,4 @@
-# As a business admin,
-# When I visit the business dashboard,
-# I expect to see my business name
-
-class BusinessAdminViewStoreDashboard < ActionDispatch::IntegrationTest
+class BusinessAdminViewStoreDashboardTest < ActionDispatch::IntegrationTest
   test "business admin can view business info" do
     admin = User.create(username: "admin", password: "password")
     admin.roles.create(name: "business_admin")
