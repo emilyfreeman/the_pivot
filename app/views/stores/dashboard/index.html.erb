@@ -34,6 +34,6 @@ Total Orders: <%= @orders.all.count %><br />
     </tr>
   </thead>
   <tbody>
-    <%= render @orders %>
+    <%= render partial: 'stores/dashboard/orders_table' %>
   </tbody>
 </table>
