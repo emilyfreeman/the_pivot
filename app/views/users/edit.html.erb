@@ -5,5 +5,9 @@
   <%= f.text_field :username%>
   <%= f.label :password %>
   <%= f.password_field :password %>
+  <%= f.label :bio %>
+  <%= f.text_field :bio %>
+  <%= f.label :image, "Attach an Image" %><br />
+  <%= f.file_field :image %><br><br>
   <%= f.submit "Update Account" %>
 <% end %>
