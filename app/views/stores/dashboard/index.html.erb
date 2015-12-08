@@ -9,6 +9,7 @@
 </div>
 
 <h4>Admins</h4>
+<%= link_to "Add New Store Admin", new_store_admin_path(@store) %>
 <div id="admins">
   <% @store.users.each do |user| %>
     Name: <%= user.first_name %> <%= user.last_name %>
