@@ -5,7 +5,7 @@
     <div class="col s12 m2">
       <div class="card">
         <div class="card-image">
-          <a href="<%= item_path(item.id) %>"><img class="max-width" src=""></a>
+          <a href="<%= store_item_path(store: item.store.slug, id: item.id) %>"><img class="max-width" src="<%= item.image.url(:thumb) %>"></a>
         </div>
         <div class="card-content">
           <p><%= item.name %></p>

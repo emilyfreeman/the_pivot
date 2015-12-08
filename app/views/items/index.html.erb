@@ -1,7 +1,7 @@
-<div id="all-items">
-  <h3>All Items</h3>
-  <% @items.each do |item| %>
+<h3>All Items</h3>
+<% @items.each do |item| %>
+  <div class="<%= item.slug %>">
     <%= item.name %>
     <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn"%>
-  <% end %>
-</div>
+  </div>
+<% end %>

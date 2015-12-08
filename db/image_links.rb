@@ -20,5 +20,4 @@ class ImageLinks
                        'https://s-media-cache-ak0.pinimg.com/736x/75/51/8f/75518f4bd486a122533f8e76e13bc552.jpg',
                        'http://www.tastearkansas.com/wp-content/uploads/2015/06/Jimmy-Pat-Blackburn-2014-2.jpg',
                        'http://kansasruralcenter.org/wp-content/uploads/2013/07/PIC-Shepherds-Valley-Farm2-595x445.jpg']
-
 end
