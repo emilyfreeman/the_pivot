@@ -28,4 +28,5 @@ class UserViewsCategoriesTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Pies")
     end
   end
+
 end
