@@ -33,8 +33,9 @@
 </div>
 
 <% if @user.orders %>
-<div>
-  <h4 id='order-history'>Your past orders:</h4>
+<div id='order-history'>
+  <h4>Your past orders:</h4>
     <%= render partial: 'orders/orders_table' %>
     <% end %>
+    <%= link_to "View all orders", orders_path %>
 </div>
