@@ -9,7 +9,7 @@
           <%# Add Image if needed %>
         </div>
         <div class="card-content">
-          <h5> <%= link_to category.name, category %></h5>
+          <h5> <%= link_to category.name, category_path(category.slug) %></h5>
         </div>
       </div>
     </div>
