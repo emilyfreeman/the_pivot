@@ -14,8 +14,8 @@
   <% @store.users.each do |user| %>
     <div id="<%= user.username %>-admin">
       <p>Name: <%= user.first_name %> <%= user.last_name %></p>
-      <p>Username: <%= user.username %></p></br>
-      <%= button_to "Delete", store_admin_path(store: @store, id: user.id), method: :delete %>
+      <p>Username: <%= user.username %></p>
+      <%= button_to "Delete", store_admin_path(store: @store, id: user.id), method: :delete %></br>
     </div>
   <% end %>
 </div>

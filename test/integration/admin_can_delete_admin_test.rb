@@ -1,4 +1,4 @@
-class NewStoreAdminTest < ActionDispatch::IntegrationTest
+class DeleteStoreAdminTest < ActionDispatch::IntegrationTest
   def setup
     admin = User.create(username: "admin", password: "password")
     admin.roles.create(name: "business_admin")
@@ -21,7 +21,7 @@ class NewStoreAdminTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "business admin can add store admin" do
+  test "business admin can delete store admin" do
     visit store_dashboard_index_path(store: @store)
 
     within("#emily-admin") do
