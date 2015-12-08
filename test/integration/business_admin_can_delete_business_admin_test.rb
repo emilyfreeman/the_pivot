@@ -1,14 +1,14 @@
-class NewStoreAdminTest < ActionDispatch::IntegrationTest
-  test "business admin can add store admin" do
+class DeleteBusinessAdminTest < ActionDispatch::IntegrationTest
+  def setup
     admin = User.create(username: "admin", password: "password")
     admin.roles.create(name: "business_admin")
-    store = Store.create(name: "GoatSoap")
-    store.users << admin
+    @store = Store.create(name: "GoatSoap")
+    @store.users << admin
     login_admin
 
     User.create(first_name: "Emily", last_name: "Freeman", username: "emily", password: "password")
 
-    visit store_dashboard_index_path(store: store)
+    visit store_dashboard_index_path(store: @store)
 
     click_link "Add New Store Admin"
 
@@ -19,10 +19,18 @@ class NewStoreAdminTest < ActionDispatch::IntegrationTest
     within("#emily-section") do
       click_button "Select"
     end
+  end
+
+  test "business admin can delete business admin" do
+    visit store_dashboard_index_path(store: @store)
+
+    within("#emily-admin") do
+      click_button "Delete"
+    end
 
     within("#admins") do
-      assert page.has_content? "Emily"
-      assert page.has_content? "emily"
+      refute page.has_content? "Emily"
+      refute page.has_content? "emily"
     end
   end
 end
