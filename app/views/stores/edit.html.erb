@@ -1,0 +1,11 @@
+<h2>Edit Business Information</h2>
+
+<%= form_for @store do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name%>
+  <%= f.label :bio %>
+  <%= f.text_area :bio %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <%= f.submit %>
+<% end %>

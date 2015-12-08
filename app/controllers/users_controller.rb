@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @orders = @user.orders.all
+    @orders = @user.orders.first(5)
     if current_admin?
       redirect_to admin_dashboard_index_path
     else

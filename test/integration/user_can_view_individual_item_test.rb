@@ -22,7 +22,7 @@ class UserCanViewIndividualItemTest < ActionDispatch::IntegrationTest
     # end
 
     within(".lettuce") do
-      click_link "Lettuce"
+      click_button "Add to Cart"
     end
 
     assert page.has_content?("Lettuce")
