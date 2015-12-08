@@ -9,7 +9,10 @@ class Seed
     seed.generate_items
     seed.generate_users
     seed.generate_admins
-    seed.generate_one_admin
+    seed.generate_justin_admin
+    seed.generate_emily_admin
+    seed.generate_jason_admin
+    seed.generate_generic_admin
   end
 
   def generate_roles
@@ -48,7 +51,8 @@ class Seed
         name: Faker::Company.name,
         status: "accepted",
         bio: Faker::Lorem.paragraph,
-        # image: ImageLinks::FARMER_IMAGE_URLS[i]
+        image: ImageLinks::FARMER_IMAGE_URLS[i]
+        # image: "http://robohash.org/#{i}.png"
       )
       puts "Store #{i}: #{store.name} created!"
     end
@@ -72,7 +76,7 @@ class Seed
       admin = User.create!(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        username: Faker::Internet.user_name + "#{i}",
+        username: Faker::Internet.user_name + "#{i * 2}",
         password_digest: Faker::Internet.password
       )
       admin.roles << Role.find(2)
@@ -81,7 +85,7 @@ class Seed
     end
   end
 
-  def generate_one_admin
+  def generate_justin_admin
       admin = User.create!(
         first_name: "Justin",
         last_name: "Pease",
@@ -90,6 +94,42 @@ class Seed
       )
       admin.roles << Role.find(2)
       add_stores(admin, 1)
+      puts "User #{admin.first_name}: stores created!"
+  end
+
+  def generate_emily_admin
+      admin = User.create!(
+        first_name: "Emily",
+        last_name: "Dowdle",
+        username: "emilydowdle",
+        password: "password"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 2)
+      puts "User #{admin.first_name}: stores created!"
+  end
+
+  def generate_jason_admin
+      admin = User.create!(
+        first_name: "Jason",
+        last_name: "Pilz",
+        username: "jasonpilz",
+        password: "password"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 3)
+      puts "User #{admin.first_name}: stores created!"
+  end
+
+  def generate_generic_admin
+      admin = User.create!(
+        first_name: "J",
+        last_name: "Doe",
+        username: "admin",
+        password: "password"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 4)
       puts "User #{admin.first_name}: stores created!"
   end
 
