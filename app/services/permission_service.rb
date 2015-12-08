@@ -29,7 +29,7 @@ class PermissionService
     return true if controller == "users" && action.in?(%w(edit index new show create update))
     return true if controller == "items" && action.in?(%w(index show))
     return true if controller == "stores" && action.in?(%w(index show))
-    return true if controller == "orders" && action.in?(%w(index show))
+    return true if controller == "orders" && action.in?(%w(new create index show))
     return true if controller == "categories" && action.in?(%w(index show))
     return true if controller == "stores/dashboard" && action.in?(%w(index show))
     return true if controller == "stores/items" && action.in?(%w(index show))
@@ -44,7 +44,7 @@ class PermissionService
     return true if controller == "users" && action.in?(%w(edit new show create update))
     return true if controller == "items" && action.in?(%w(index show))
     return true if controller == "stores" && action.in?(%w(index show new create))
-    return true if controller == "orders" && action.in?(%w(index show))
+    return true if controller == "orders" && action.in?(%w(new create index show))
     return true if controller == "categories" && action.in?(%w(index show))
     return true if controller == "stores/items" && action.in?(%w(index show))
     return true if controller == "cart_items" && action.in?(%w(index show create update destroy))
@@ -60,6 +60,6 @@ class PermissionService
     return true if controller == "categories" && action.in?(%w(index show))
     return true if controller == "stores/items" && action.in?(%w(index show))
     return true if controller == "cart_items" && action.in?(%w(index show create update destroy))
-    return true if controller == "orders" && action.in?(%w(index show))
+    return true if controller == "orders" && action.in?(%w(index new create show))
   end
 end
