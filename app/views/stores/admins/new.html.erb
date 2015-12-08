@@ -1,0 +1,12 @@
+<div class="filter">
+  <label for="user_filter_username">Filter By Username</label>
+  <%= text_field :user, :filter_username %>
+</div>
+
+<div class="users">
+<% @users.each do |user| %>
+  <div id="<%= user.username %>-section" class="user" data-username="<%= user.username %>">
+    <h3><%= user.username %></h3> <%= button_to "Select", store_admins_path(store: current_user.store, user: user.id) %>
+  </div>
+<% end %>
+</div>
