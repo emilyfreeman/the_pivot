@@ -1,7 +1,21 @@
 <h3>All Items</h3>
-<% @items.each do |item| %>
-  <div class="<%= item.slug %>">
-    <%= item.name %>
-    <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn"%>
-  </div>
-<% end %>
+
+<div class="row featured">
+  <% @items.each do |item| %>
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="<%= item.slug %>">
+          <div class="card-image">
+            <a href="<%= store_item_path(store: item.store.slug, id: item.id) %>"><img class="max-width" src="<%= item.image.url(:thumb) %>"></a>
+          </div>
+          <div class="card-content">
+            <p><%= item.name %></p>
+          </div>
+          <div class="card-content">
+            <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
