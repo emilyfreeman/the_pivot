@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   root to: "pages#home"
 
-  namespace :stores, path: ":store", as: :store do
-    resources :dashboard, only: [:show, :index]
-    resources :items,  only: [:show, :index]
-    resources :orders, only: [:show, :indez]
-  end
 
   resources :categories, only: [:index, :show], param: :slug
   resources :items, only: [:index, :show], param: :slug
@@ -13,6 +8,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
   resources :stores, only: [:index, :create, :show, :new]
+  namespace :stores, path: ":store", as: :store do
+    resources :dashboard, only: [:show, :index]
+    resources :items,  only: [:show, :index]
+    resources :orders, only: [:show, :indez]
+  end
   namespace :admin do
     resources :items, only: [:index, :show, :create, :new, :update, :edit, :destroy]
     resources :dashboard, only: [:index, :show]
