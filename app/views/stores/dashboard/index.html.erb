@@ -7,6 +7,14 @@
 
 </div>
 
+<h4>Admins</h4>
+<div id="admins">
+  <% @store.users.each do |user| %>
+    Name: <%= user.first_name %> <%= user.last_name %>
+    Username: <%= user.username %>
+  <% end %>
+</div>
+
 
 <h4>Orders</h4>
 
