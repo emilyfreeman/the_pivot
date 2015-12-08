@@ -1,0 +1,24 @@
+<h2><%= @category.name %></h2>
+
+<div class="row" id="<%= @category.slug %>-items">
+  <% @items.each do |item| %>
+    <div class="col s12 m4">
+      <div class="card min-height-400">
+        <div class="card-image">
+          <a href="<%= item_path(item) %>"><img class="max-width" src="<%= item.image.url(:thumb) %>"></a>
+        </div>
+        <div class="card-content">
+          <h5><%= item.name %></h5>
+          <p><%= number_to_currency item.price %></p>
+          <% if item.status == "Available" %>
+           <p><center><%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn"%></center></p>
+         <% else %>
+           <center><p class="btn disabled"> Item is Retired </p></center>
+         <% end %>
+
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

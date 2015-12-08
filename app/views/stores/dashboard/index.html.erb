@@ -1,6 +1,7 @@
 <h2><%= @store.name %> Dashboard</h2>
 
 <h4>Business Information</h4>
+<%= link_to "Edit Store Information", edit_store_path(@store) %>
 <div id="business-info">
   <strong>Name: </strong><%= @store.name %></br>
   <strong>Bio: </strong><%= @store.bio %>
