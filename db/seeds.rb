@@ -36,7 +36,7 @@ class Seed
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png",
         category_id: Random.new.rand(1..Category.count),
         store_id: Random.new.rand(1..Store.count)
         )
