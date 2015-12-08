@@ -36,7 +36,7 @@ class Seed
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image_file_name: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
+        image: "https://robohash.org/#{i}.png",
         category_id: Random.new.rand(1..Category.count),
         store_id: Random.new.rand(1..Store.count)
         )
@@ -52,7 +52,6 @@ class Seed
         status: "accepted",
         bio: Faker::Lorem.paragraph,
         image: ImageLinks::FARMER_IMAGE_URLS[i]
-        # image: "http://robohash.org/#{i}.png"
       )
       puts "Store #{i}: #{store.name} created!"
     end
@@ -65,7 +64,8 @@ class Seed
         last_name: Faker::Name.last_name,
         username: Faker::Internet.user_name + "#{i}",
         password_digest: Faker::Internet.password,
-        bio: Faker::Lorem.paragraph
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
       )
       user.roles << Role.find(3)
     end
@@ -90,7 +90,8 @@ class Seed
         first_name: "Justin",
         last_name: "Pease",
         username: "justinpease",
-        password: "password"
+        password: "password",
+        image: "https://robohash.org/justin.png"
       )
       admin.roles << Role.find(2)
       add_stores(admin, 1)
@@ -102,7 +103,8 @@ class Seed
         first_name: "Emily",
         last_name: "Dowdle",
         username: "emilydowdle",
-        password: "password"
+        password: "password",
+        image: "https://robohash.org/emily.png"
       )
       admin.roles << Role.find(2)
       add_stores(admin, 2)
@@ -114,7 +116,8 @@ class Seed
         first_name: "Jason",
         last_name: "Pilz",
         username: "jasonpilz",
-        password: "password"
+        password: "password",
+        image: "https://robohash.org/jason.png"
       )
       admin.roles << Role.find(2)
       add_stores(admin, 3)
@@ -126,7 +129,8 @@ class Seed
         first_name: "J",
         last_name: "Doe",
         username: "admin",
-        password: "password"
+        password: "password",
+        image: "https://robohash.org/generic.png"
       )
       admin.roles << Role.find(2)
       add_stores(admin, 4)
