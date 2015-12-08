@@ -6,8 +6,12 @@ class Stores::AdminsController < Stores::BaseController
   end
 
   def create
-    byebug
-    @user = params
+    @user = User.find(params[:user])
+    current_user.store.users << @user
+    if current_user.store.save
+      redirect_to store_dashboard_index_path
+    else
+      render :new
+    end
   end
-
 end

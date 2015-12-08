@@ -6,12 +6,18 @@ class NewStoreAdminTest < ActionDispatch::IntegrationTest
     store.users << admin
     login_admin
 
+    User.create(first_name: "Emily", last_name: "Freeman", username: "emily", password: "password")
+
     visit store_dashboard_index_path(store: store)
 
     click_link "Add New Store Admin"
 
-    within("#search") do
-      fill_in "Username", with: "Em"
+    within(".filter") do
+      fill_in "Filter By Username", with: "em"
+    end
+
+    within("#emily-section") do
+      click_button "Select"
     end
 
     within("#admins") do
