@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:show, :index]
     resources :items,  only: [:show, :index]
     resources :orders, only: [:show, :index]
-    resources :admins, only: [:new, :create]
+    resources :admins, only: [:new, :create, :destroy]
   end
 
   resources :categories, only: [:index, :show], param: :slug
