@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :stores, path: ":store", as: :store do
     resources :dashboard, only: [:show, :index]
     resources :items,  only: [:show, :index]
-    resources :orders, only: [:show, :indez]
+    resources :orders, only: [:show, :index]
   end
 
   resources :categories, only: [:index, :show], param: :slug
