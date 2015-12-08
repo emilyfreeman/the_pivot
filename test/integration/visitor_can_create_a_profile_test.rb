@@ -12,7 +12,7 @@ class VisitorRegisterAndCreateProfileTest < ActionDispatch::IntegrationTest
     assert_equal current_path, dashboard_path
     save_and_open_page
     within("#profile-name") do
-      assert page.has_content?("newusername")
+      assert page.has_content?("newname")
     end
   end
 end
