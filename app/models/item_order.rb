@@ -8,7 +8,6 @@ class ItemOrder < ActiveRecord::Base
       item_price = Item.find(item_id.to_i).price
       subtotal = item_price * quantity
       store_id = Item.find(item_id.to_i).store_id
-      byebug
       ItemOrder.create(order_id: order.id,
                        item_id: item_id,
                        quantity: quantity,

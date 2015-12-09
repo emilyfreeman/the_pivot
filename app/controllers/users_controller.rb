@@ -18,13 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @orders = @user.orders.order(created_at: :desc).first(5)
-    if current_admin?
-      redirect_to admin_dashboard_index_path
-    else
-      render :show
-    end
-    # @orders = @user.orders.first(5)
+    @orders = @user.orders.first(5)
   end
 
   def edit
