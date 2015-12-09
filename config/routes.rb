@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "pages#home"
 
-  namespace 
+  namespace :platform do
+    resources :dashboard, only: [:index]
+  end
   # resources instead of namespace? pass module as flag
   namespace :stores, path: ":store", as: :store do
     resources :dashboard, only: [:show, :index]

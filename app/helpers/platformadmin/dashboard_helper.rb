@@ -1,0 +1,2 @@
+module Platformadmin::DashboardHelper
+end

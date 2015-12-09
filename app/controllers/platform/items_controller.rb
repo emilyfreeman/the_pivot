@@ -1,4 +1,4 @@
-class Admin::ItemsController < Admin::BaseController
+class Platform::ItemsController < Platform::BaseController
   def index
     @items = Item.admin_alpha
   end

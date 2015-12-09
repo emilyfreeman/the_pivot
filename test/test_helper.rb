@@ -69,6 +69,11 @@ class ActionDispatch::IntegrationTest
     @store.users << @admin
   end
 
+  def create_platform_admin
+    @platform_admin = User.create(username: "platform_admin", password: "password")
+    @platform_admin.roles.create(name: "platform_admin")
+  end
+
   def create_cart_for_visitor
     visit items_path
     within("#items") do
@@ -104,6 +109,7 @@ class ActionDispatch::IntegrationTest
     fill_in "Username", with: "platform_admin"
     fill_in "Password", with: "password"
     click_button "Login"
+    save_and_open_page
   end
 
   def create_shop
@@ -131,11 +137,6 @@ class ActionDispatch::IntegrationTest
 
     visit orders_path
     click_link("View Order Details")
-  end
-
-  def create_platform_admin
-    @platform_admin = User.create(username: "platform_admin", password: "password")
-    @platform_admin.roles.create(name: "platform_admin")
   end
 
   def create_order(status, price, user_id)
