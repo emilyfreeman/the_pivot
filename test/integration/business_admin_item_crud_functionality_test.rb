@@ -1,4 +1,6 @@
-class StoreAdminItemCrudTest < ActionDispatch::IntegrationTest
+require 'test_helper'
+
+class BusinessAdminItemCrudTest < ActionDispatch::IntegrationTest
   def setup
     admin = User.create(username: "admin", password: "password")
     admin.roles.create(name: "business_admin")
