@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :require_current_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -10,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.username}"
-      redirect_to user_path(@user)
+      redirect_to dashboard_path
     else
       flash.now[:error] = @user.errors.full_messages.join(', ')
       render :new
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
     else
       render :show
     end
+    # @orders = @user.orders.first(5)
   end
 
   def edit
@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :bio, :image)
   end
 end

@@ -1,7 +1,10 @@
 class Store < ActiveRecord::Base
   has_many :users
   has_many :items
+  has_many :item_orders
 
+  has_many :orders, through: :users
+  has_many :orders, through: :item_orders
   has_many :categories, through: :items
 
   validates :name, presence: true

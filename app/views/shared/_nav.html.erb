@@ -1,8 +1,5 @@
 <nav class="black">
   <div class="nav-wrapper">
-    <!-- <ul id="dropdown1" class="dropdown-content">
-      <%#= render oils %>
-    </ul> -->
     <a href="/" class="brand-logo">Pivot Produce</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down" style = "padding-right: 10px">
@@ -11,7 +8,6 @@
       <li> <%= link_to "Our Farmers", farmers_path %>
       <% if current_user %>
         <li><%= link_to "Profile", dashboard_path %></li>
-        <li><%= link_to "View Past Orders", orders_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", login_path %></li>
@@ -22,7 +18,7 @@
     </ul>
   </div>
 </nav>
-<% if current_admin? %>
+<% if store_admin? %>
   <nav class="#eceff1 blue-grey lighten-5">
     <li class="brand-logo black-text" style="stationary-text">Administrator</li>
     <ul class="right hide-on-med-and-down">
