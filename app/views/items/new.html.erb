@@ -6,7 +6,7 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.label :category %>
-  <%= select(:item, :category_id, Category.all.map { |cat| [cat.name, cat.id] } ) %>
+  <%= select(:item, :category_id, category_arr) %>
   <%= f.label :price %>
   <%= f.text_field :price%>
   <%= f.label :image %>
