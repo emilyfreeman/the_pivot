@@ -10,19 +10,20 @@ class BusinessAdminItemCrudTest < ActionDispatch::IntegrationTest
   end
 
   test "business admin can add new item" do
-    visit store_path(store: @store.id)
-save_and_open_page
-    within(".filter") do
-      fill_in "Filter By Username", with: "em"
-    end
+    cat = Category.create(name: "Stuff")
+    visit store_path(store: @store.slug, id: @store)
+    click_link "Add New Item"
 
-    within("#emily-section") do
-      click_button "Select"
-    end
+    fill_in "Name", with: "New thing"
+    fill_in "Price", with: "6"
+    fill_in "Description", with: "Awesome thing to sell"
+    select "Stuff", from: "item_category_id"
+    click_button "Create Item"
 
-    within("#admins") do
-      assert page.has_content? "Emily"
-      assert page.has_content? "emily"
+    assert store_path(store: @store.slug, id: @store.id), current_path
+
+    within(".Stuff-items") do
+      assert page.has_content? "New thing"
     end
   end
 end
