@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserCanViewIndividualFarmerThroughIndexTest < ActionDispatch::IntegrationTest
+class UserCanViewIndividualFarmerTest < ActionDispatch::IntegrationTest
   def setup
     user = User.create(first_name: "John",
                        last_name: "Slota",

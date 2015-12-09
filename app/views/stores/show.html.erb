@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row container categories">
-    <% if current_user.store == @store %>
+    <% if current_user && current_user.store == @store %>
       <%= link_to "Add New Item", new_item_path %>
     <% end %>
     <% @store.categories.uniq.each do |category| %>
