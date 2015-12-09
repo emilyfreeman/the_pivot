@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :require_current_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -20,11 +19,6 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @orders = @user.orders.first(5)
-    if current_admin?
-      redirect_to admin_dashboard_index_path
-    else
-      render :show
-    end
   end
 
   def edit

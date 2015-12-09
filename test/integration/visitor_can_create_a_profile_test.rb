@@ -14,4 +14,5 @@ class VisitorRegisterAndCreateProfileTest < ActionDispatch::IntegrationTest
       assert page.has_content?("newname")
     end
   end
+
 end
