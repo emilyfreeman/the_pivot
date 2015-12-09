@@ -21,7 +21,6 @@ class UserCanPlaceAnOrderTest < ActionDispatch::IntegrationTest
 
     fill_in "Username", with: "john"
     fill_in "Password", with: "password"
-    save_and_open_page
 
     click_button"Login"
     assert page.has_content?("Logged in as john")
