@@ -4,6 +4,7 @@ require "rails/test_help"
 require "capybara/rails"
 require "mocha/mini_test"
 require "simplecov"
+require "minitest/pride"
 
 SimpleCov.start("rails")
 
@@ -50,11 +51,6 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def setup
-
-  end
-
-  def teardown
-    reset_session!
   end
 
   def create_item(name, price, description)
@@ -130,6 +126,10 @@ class ActionDispatch::IntegrationTest
 
   def create_order(status, price, user_id)
     Order.create(status: status, total_price: price, user_id: user_id)
+  end
+
+  def teardown
+    reset_session!
   end
 end
 

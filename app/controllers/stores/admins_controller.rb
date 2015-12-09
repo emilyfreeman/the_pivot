@@ -1,5 +1,4 @@
 class Stores::AdminsController < Stores::BaseController
-
   before_action :current_admin?
 
   def new

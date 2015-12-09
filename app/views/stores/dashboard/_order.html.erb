@@ -1,0 +1,7 @@
+<% @orders.each do |order| %>
+  <tr>
+    <td class="order-<%= order.id %>"><%= order.id %></td>
+    <td><%= order.created_at.strftime("%B %d, %Y") %></td>
+    <td><%= link_to "View Order Details", order_path(order)%></td>
+  </tr>
+<% end %>
