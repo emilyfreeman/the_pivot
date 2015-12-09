@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index, :show], param: :slug
-  resources :items, only: [:index, :show], param: :slug
+  resources :items, only: [:index, :show, :new, :create, :edit, :destroy], param: :slug
   resources :cart_items, only: [:create, :index, :destroy, :update]
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
