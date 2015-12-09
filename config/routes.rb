@@ -15,11 +15,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
   resources :stores, only: [:index, :show, :new, :create, :edit, :update]
-  namespace :admin do
-    resources :items, only: [:index, :show, :create, :new, :update, :edit, :destroy]
-    resources :dashboard, only: [:index, :show]
-    resources :orders, only: [:index, :update]
-  end
 
   get '/farmers', to: 'stores#index'
 
