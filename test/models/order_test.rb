@@ -28,11 +28,9 @@ class OrderTest < ActiveSupport::TestCase
     order2 = Order.scope_action("Paid")
     order3 = Order.scope_action("Cancelled")
 
-    binding.pry
-
-    assert_equal order1.status, "Ordered"
-    assert_equal order2.status, "Paid"
-    assert_equal order3.status, "Cancelled"
+    assert_equal Order.scope_action("Ordered").count, 1
+    assert_equal Order.scope_action("Paid").count, 1
+    assert_equal Order.scope_action("Cancelled").count, 0
   end
 
 end
