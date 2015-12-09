@@ -21,8 +21,7 @@ class VisitorRegisterAndCreateProfileTest < ActionDispatch::IntegrationTest
     fill_in "Username", with: ""
     fill_in "Password", with: ""
     click_button "Create Account"
-
-    assert_equal login_path, current_path
+    assert_equal users_path, current_path
     assert page.has_content?("Password can't be blank, Username can't be blank")
   end
 
