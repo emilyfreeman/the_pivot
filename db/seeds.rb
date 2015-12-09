@@ -51,7 +51,7 @@ class Seed
         name: Faker::Company.name,
         status: "accepted",
         bio: Faker::Lorem.paragraph,
-        # image: ImageLinks::FARMER_IMAGE_URLS[i]
+        image: ImageLinks::FARMER_IMAGE_URLS[i]
       )
       puts "Store #{i}: #{store.name} created!"
     end
