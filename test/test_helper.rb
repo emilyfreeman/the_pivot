@@ -67,7 +67,6 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_admin_and_store
-
     @admin = User.create(username: "admin", password: "password")
     # @admin.roles << Role.find_by(name:"business_admin")
     @admin.roles.create(name: "business_admin")

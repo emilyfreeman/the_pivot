@@ -30,12 +30,20 @@ class UserViewsProfileTest < ActionDispatch::IntegrationTest
     within("#user-bio") do
       assert page.has_content?("Hi my name John and this is my bio")
     end
+    refute page.has_content?("My Store Dashboard")
 
     click_link "View all orders"
 
     within("#all-orders") do
       assert page.has_content? "#{@order7.id}"
     end
+  end
 
+  test "a store owner logs in and is taken to their profile page" do
+      create_admin_and_store
+      login_admin
+
+      assert_equal dashboard_path, current_path
+      assert page.has_content?("My Store Dashboard")
   end
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart, :authorize!
-  helper_method :current_user, :current_admin?
+  helper_method :current_user, :store_admin?
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
     render file: "/public/404" unless current_user
   end
 
-  def current_admin?
-    current_user && "business_admin".in?(current_user.roles)
+  def store_admin?
+    current_user && "business_admin".in?(current_user.roles.pluck(:name))
   end
 
   def current_permission
@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless authorized?
       redirect_to root_url
-      # flash[:danger] = "Stranger, danger! I don't know you!"
     end
   end
 
