@@ -4,6 +4,7 @@ require "rails/test_help"
 require "capybara/rails"
 require "mocha/mini_test"
 require "simplecov"
+require "minitest/pride"
 
 SimpleCov.start("rails")
 
@@ -50,11 +51,6 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def setup
-
-  end
-
-  def teardown
-    reset_session!
   end
 
   def create_item(name, price, description)
@@ -66,14 +62,13 @@ class ActionDispatch::IntegrationTest
     @user = User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
   end
 
-  def create_admin_and_store
-
-    @admin = User.create(username: "admin", password: "password")
-    # @admin.roles << Role.find_by(name:"business_admin")
-    @admin.roles.create(name: "business_admin")
-    @store = Store.create(name: "GoatSoap")
-    @store.users << @admin
-  end
+  # def create_admin_and_store
+  #   @admin = User.create(username: "admin", password: "password")
+  #   # @admin.roles << Role.find_by(name:"business_admin")
+  #   @admin.roles.create(name: "business_admin")
+  #   @store = Store.create(name: "GoatSoap")
+  #   @store.users << @admin
+  # end
 
   def create_cart_for_visitor
     visit items_path
@@ -131,6 +126,10 @@ class ActionDispatch::IntegrationTest
 
   def create_order(status, price, user_id)
     Order.create(status: status, total_price: price, user_id: user_id)
+  end
+  
+  def teardown
+    reset_session!
   end
 end
 

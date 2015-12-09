@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class DeleteBusinessAdminTest < ActionDispatch::IntegrationTest
   def setup
     admin = User.create(username: "admin", password: "password")
@@ -27,6 +29,8 @@ class DeleteBusinessAdminTest < ActionDispatch::IntegrationTest
     within("#emily-admin") do
       click_button "Delete"
     end
+
+    assert store_dashboard_index_path(store: @store), current_path
 
     within("#admins") do
       refute page.has_content? "Emily"

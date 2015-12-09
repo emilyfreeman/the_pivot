@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class NewBusinessAdminTest < ActionDispatch::IntegrationTest
   test "business admin can add store admin" do
     admin = User.create(username: "admin", password: "password")
