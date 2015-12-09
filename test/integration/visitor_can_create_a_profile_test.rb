@@ -10,7 +10,6 @@ class VisitorRegisterAndCreateProfileTest < ActionDispatch::IntegrationTest
     click_button "Create Account"
 
     assert_equal current_path, dashboard_path
-    save_and_open_page
     within("#profile-name") do
       assert page.has_content?("newname")
     end
