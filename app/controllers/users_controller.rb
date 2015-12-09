@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @orders = @user.orders.first(5)
+    @orders = @user.orders.last(5)
   end
 
   def edit
