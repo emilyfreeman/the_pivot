@@ -28,4 +28,10 @@ class User < ActiveRecord::Base
     roles.exists?(name: "business_admin")
   end
 
+  def store_submitted?
+    if (self.store_id != nil) && (Store.find(self.store_id).status == "Pending")
+      true
+    end
+  end
+
 end

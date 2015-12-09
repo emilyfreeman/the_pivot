@@ -1,0 +1,10 @@
+<h2>Submit an idea for a Store!</h2>
+<%= form_for @store do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name%>
+  <%= f.label :bio %>
+  <%= f.text_field :bio %>
+  <%= f.label :image, "Attach an Image" %><br>
+  <%= f.file_field :image %><br><br>
+  <%= f.submit "Create Account" %>
+<% end %>
