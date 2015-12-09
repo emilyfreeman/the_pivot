@@ -20,6 +20,7 @@ class UserViewsProfileTest < ActionDispatch::IntegrationTest
     fill_in("Username", with: "Johny")
     fill_in("Password", with: "password")
     click_button "Login"
+
     within("#order-history") do
       assert page.has_content? "#{@order.id}"
       assert page.has_content? "#{@order5.id}"
@@ -29,7 +30,7 @@ class UserViewsProfileTest < ActionDispatch::IntegrationTest
     within("#user-bio") do
       assert page.has_content?("Hi my name John and this is my bio")
     end
-    
+
     click_link "View all orders"
 
     within("#all-orders") do
