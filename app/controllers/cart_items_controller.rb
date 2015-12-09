@@ -17,7 +17,9 @@ class CartItemsController < ApplicationController
     item = Item.find(params[:id])
     @cart.add_or_subtract_item(params[:edit_action], item)
     if @cart.remove_notice?(params[:edit_action])
-      flash[:notice] = "Successfully removed #{view_context.link_to(item.name, item_path(item.slug))} from your cart."
+      flash[:notice] = "Successfully removed one #{view_context.link_to(item.name, item_path(item.slug))} from your cart."
+    else
+      flash[:notice] = "Successfully added one #{view_context.link_to(item.name, item_path(item.slug))} to your cart."
     end
     @items = @cart.cart_items
     redirect_to cart_items_path

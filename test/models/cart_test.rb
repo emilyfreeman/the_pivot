@@ -90,7 +90,6 @@ class CartTest < ActiveSupport::TestCase
     @cart.add_or_subtract_item(nil, @item1)
 
     assert_equal 1, @cart.count_of(@item1.id.to_s)
-
   end
 
   test "remove item completely" do
@@ -107,7 +106,5 @@ class CartTest < ActiveSupport::TestCase
     @cart.remove_item_completely(@item2.id)
 
     assert_equal @cart.contents, {}
-
-
   end
 end
