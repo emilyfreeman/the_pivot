@@ -63,11 +63,10 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
+    @user = User.create(username: "emily", password: "password", first_name: "Emily", last_name: "Dowdle")
   end
 
   def create_admin_and_store
-
     @admin = User.create(username: "admin", password: "password")
     # @admin.roles << Role.find_by(name:"business_admin")
     @admin.roles.create(name: "business_admin")
