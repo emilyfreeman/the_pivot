@@ -64,7 +64,6 @@ class ActionDispatch::IntegrationTest
 
   def create_admin_and_store
     @admin = User.create(username: "admin", password: "password")
-    # @admin.roles << Role.find_by(name:"business_admin")
     @admin.roles.create(name: "business_admin")
     @store = Store.create(name: "GoatSoap")
     @store.users << @admin
@@ -122,6 +121,11 @@ class ActionDispatch::IntegrationTest
 
     visit orders_path
     click_link("View Order Details")
+  end
+
+  def create_platform_admin
+    @platform_admin = User.create(username: "platform_admin", password: "password")
+    @platform_admin.roles.create(name: "platform_admin")
   end
 
   def create_order(status, price, user_id)
