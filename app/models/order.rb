@@ -30,10 +30,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def size_of_order
-    self.reduce(0) { |sum, n| sum + n.subtotal }
-  end
-
   def self.scope_action(scope)
     if scope == "Ordered"
       Order.ordered

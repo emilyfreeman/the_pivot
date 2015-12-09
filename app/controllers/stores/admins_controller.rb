@@ -1,7 +1,8 @@
 class Stores::AdminsController < Stores::BaseController
+  before_action :store_admin?
+
   def new
     @users = User.all
-    # respond_with @users
   end
 
   def create
@@ -18,4 +19,5 @@ class Stores::AdminsController < Stores::BaseController
     current_user.store.users.find(params[:id]).update(store_id: nil)
     redirect_to store_dashboard_index_path
   end
+
 end
