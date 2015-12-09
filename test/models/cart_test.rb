@@ -80,4 +80,31 @@ class CartTest < ActiveSupport::TestCase
     create_two_item_cart
     assert_equal({}, @cart.clear)
   end
+
+  test "add or subtract function" do
+    create_two_item_cart
+    @cart.add_or_subtract_item("add", @item1)
+
+    assert_equal 2, @cart.count_of(@item1.id.to_s)
+
+    @cart.add_or_subtract_item(nil, @item1)
+
+    assert_equal 1, @cart.count_of(@item1.id.to_s)
+  end
+
+  test "remove item completely" do
+    create_two_item_cart
+
+    @cart.add_or_subtract_item(nil, @item1)
+
+    assert_equal true, @cart.remove_notice?("subtract")
+
+    @cart.remove_item_completely(@item1.id)
+
+    @cart.add_or_subtract_item(nil, @item2)
+
+    @cart.remove_item_completely(@item2.id)
+
+    assert_equal @cart.contents, {}
+  end
 end
