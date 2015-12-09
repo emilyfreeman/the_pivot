@@ -23,7 +23,6 @@
     <li class="brand-logo black-text" style="stationary-text">Administrator</li>
     <ul class="right hide-on-med-and-down">
       <li><%=link_to "Dashboard", store_dashboard_index_path(store: current_user.store.slug), class: "black-text" %></li>
-      <li><%=link_to "View Store", current_user.store.slug, class: "black-text" %></li>
-    </ul>
+      <li><%=link_to "View Store", "/""#{current_store.slug}", class: "black-text" %></li></ul>
   </nav>
 <% end %>
