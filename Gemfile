@@ -45,6 +45,7 @@ group :development, :test do
   gem "mocha"
   gem "simplecov"
   gem "mrspec"
+  # gem 'better_errors'
 end
 
 group :development do
