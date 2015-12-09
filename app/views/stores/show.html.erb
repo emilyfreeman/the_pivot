@@ -20,7 +20,7 @@
           <% @store.items.where(category_id: category.id).each do |item| %>
             <li><%= item.name %></li>
             <% if store_permissions %>
-              <%= button_to "Edit", edit_item_path(item) %>
+              <%= button_to "Edit", edit_item_path(item), method: :get %>
               <%= button_to "Delete", item_path(item), method: :delete %>
             <% end %>
           <% end %>

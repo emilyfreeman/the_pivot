@@ -44,4 +44,25 @@ class BusinessAdminItemCrudTest < ActionDispatch::IntegrationTest
 
     refute page.has_content? "New thing"
   end
+
+  test "business admin can edit item" do
+    cat = Category.create(name: "Stuff")
+    visit store_path(store: @store.slug, id: @store)
+    click_link "Add New Item"
+
+    fill_in "Name", with: "New thing"
+    fill_in "Price", with: "6"
+    fill_in "Description", with: "Awesome thing to sell"
+    select "Stuff", from: "item_category_id"
+    click_button "Create Item"
+
+    assert store_path(store: @store.slug, id: @store.id), current_path
+
+    click_button "Edit"
+
+    fill_in "Name", with: "AWESOME NEW TITLE"
+    click_button "Update Item"
+
+    assert page.has_content? "AWESOME NEW TITLE"
+  end
 end
