@@ -56,7 +56,7 @@ class PermissionService
   def global_admin_permissions
     return true if controller == "pages" && action.in?(%w(home))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
-    return true if controller == "stores" && action.in?(%w(index show))
+    return true if controller == "stores" && action.in?(%w(index show new create))
     return true if controller == "items" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(edit new show create update))
     return true if controller == "categories" && action.in?(%w(index show))
