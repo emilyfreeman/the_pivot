@@ -3,6 +3,7 @@ require 'test_helper'
 class BusinessAdminViewStoreDashboardTest < ActionDispatch::IntegrationTest
 
   test "business admin can view business info" do
+    skip
     admin = User.create!(username: "someotheradmin", password: "password")
     admin.roles.create(name: "business_admin")
     store = Store.create(name: "TestShop")
