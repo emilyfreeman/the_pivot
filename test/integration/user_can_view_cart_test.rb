@@ -89,10 +89,10 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
                                 description: "this is a cool candle",
                                 price: 45.0,
                                 store_id: @store2.id)
-   item3 = @store.items.create(name: "Mango Peach Salsa",
-                               description: "I love salsa",
-                               price: 12.0,
-                               store_id: @store2.id)
+    item3 = @store.items.create(name: "Mango Peach Salsa",
+                                description: "I love salsa",
+                                price: 12.0,
+                                store_id: @store2.id)
     visit items_path
 
     assert page.has_content?("Cart (0)")
@@ -123,6 +123,68 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("this is a cool candle")
 
     assert page.has_content?("Total: $46")
+  end
+
+  test "user can update cart" do
+    @user = User.create(first_name: "John",
+                       last_name: "Slota",
+                       username: "john",
+                       password: "password")
+
+    @store = Store.create(name: "Adam's Apples",
+                               bio: "We rewl",
+                               status: "approved")
+    @store2 = Store.create(name: "Adam's Apples",
+                          bio: "We rewl",
+                          status: "approved")
+    item1 = @store.items.create(name: "Apple",
+                                description: "Gala Apple",
+                                price: 6.0,
+                                store_id: @store.id)
+    item2 = @store.items.create(name: "Banana",
+                                description: "This is a banana",
+                                price: 1.0,
+                                store_id: @store.id)
+    item3 = @store.items.create(name: "Bluberry Pie",
+                                description: "Delicious",
+                                price: 12.0,
+                                store_id: @store.id)
+    item3 = @store.items.create(name: "Red Candle",
+                                description: "this is a cool candle",
+                                price: 45.0,
+                                store_id: @store2.id)
+    item3 = @store.items.create(name: "Mango Peach Salsa",
+                                description: "I love salsa",
+                                price: 12.0,
+                                store_id: @store2.id)
+    visit items_path
+
+    assert page.has_content?("Cart (0)")
+
+    within(".banana") do
+      click_button "Add to Cart"
+    end
+
+    assert page.has_content?("Added Banana to cart.")
+    assert page.has_content?("Cart (1)")
+
+    visit '/cart_items'
+    click_button "add"
+
+
+    assert page.has_content?("Successfully added one Banana to your cart.")
+    assert page.has_content?("Cart (2)")
+
+    click_button "remove"
+
+    assert page.has_content?("Successfully removed one Banana from your cart.")
+    assert page.has_content?("Cart (1)")
+
+    click_link "Remove"
+
+    assert page.has_content?("Successfully removed Banana from your cart.")
+    assert page.has_content?("Cart (0)")
+
   end
 
 end
