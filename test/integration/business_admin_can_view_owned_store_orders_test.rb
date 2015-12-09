@@ -40,7 +40,7 @@ class BusinessAdminCanViewOwnedStoreOrdersTest < ActionDispatch::IntegrationTest
   test "business admin can view a single order" do
     visit store_dashboard_index_path(store: @store)
     assert store_dashboard_index_path(store: @store), current_path
-    click_link "View Order Details"
+    first(:link, "View Order Details").click
     assert page.has_content?("Order #{@wild_honey_order.id} Details")
   end
 end
