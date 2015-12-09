@@ -17,6 +17,10 @@
     <%= link_to "View Cart", cart_path %> |
     <% if current_user.store_admin? %>
       <%= link_to "My Store Dashboard", store_dashboard_index_path(current_user.store.slug) %>
+    <% elsif current_user.store_submitted? %>
+      <%= "Your business is pending review" %>
+    <% else %>
+      <%= link_to "Interested in your own business?!", new_store_path  %>
     <% end %>
   </h6>
 </div>
