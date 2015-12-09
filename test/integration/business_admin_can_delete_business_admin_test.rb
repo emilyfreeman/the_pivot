@@ -25,6 +25,7 @@ class DeleteBusinessAdminTest < ActionDispatch::IntegrationTest
 
   test "business admin can delete business admin" do
     visit store_dashboard_index_path(store: @store)
+
     within("#emily-admin") do
       click_button "Delete"
     end

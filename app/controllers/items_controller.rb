@@ -23,6 +23,13 @@ class ItemsController < ApplicationController
     @item = Item.find_by(slug: params[:slug])
   end
 
+  def destroy
+    item = Item.find_by(slug: params[:slug])
+    # require 'pry'; binding.pry
+    item.destroy
+    redirect_to request.referrer 
+  end
+
   private
 
   def item_params
