@@ -53,18 +53,4 @@ class UserPermissionServiceTest < ActionDispatch::IntegrationTest
 
     assert category_path(slug: cat.slug), current_path
   end
-
-  test "a business admin can add items to cart" do
-    item = Item.create(name: "cat")
-
-    visit items_path
-
-    click_button "Add to Cart"
-
-    within(".nav-wrapper") do
-      click_link "Cart"
-    end
-
-    assert cart_items_path, current_path
-  end
 end
