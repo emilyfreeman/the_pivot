@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206235518) do
+ActiveRecord::Schema.define(version: 20151209004407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20151206235518) do
     t.integer "order_id"
     t.integer "quantity"
     t.float   "subtotal"
+    t.integer "store_id"
   end
 
   add_index "item_orders", ["item_id"], name: "index_item_orders_on_item_id", using: :btree
   add_index "item_orders", ["order_id"], name: "index_item_orders_on_order_id", using: :btree
+  add_index "item_orders", ["store_id"], name: "index_item_orders_on_store_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -109,6 +111,7 @@ ActiveRecord::Schema.define(version: 20151206235518) do
 
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
+  add_foreign_key "item_orders", "stores"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "stores"
   add_foreign_key "user_roles", "roles"
