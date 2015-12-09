@@ -1,5 +1,5 @@
 class Stores::AdminsController < Stores::BaseController
-  before_action :current_admin?
+  before_action :store_admin?
 
   def new
     @users = User.all

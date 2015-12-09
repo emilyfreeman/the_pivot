@@ -46,12 +46,11 @@ class Seed
 
   def generate_stores
     20.times do |i|
-      # user = User.offset(Random.new.rand(1..20))
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
         bio: Faker::Lorem.paragraph,
-        image: ImageLinks::FARMER_IMAGE_URLS[i]
+        image: "https://robohash.org/#{i}.png"
       )
       puts "Store #{i}: #{store.name} created!"
     end
