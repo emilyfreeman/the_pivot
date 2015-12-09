@@ -4,8 +4,8 @@ class Stores::DashboardController < Stores::BaseController
     @orders = @store.orders
   end
 
-  def show
-    @store = current_user.store
-    @orders = Order.desc_by_date
-  end
+  # def show
+  #   @store = current_user.store
+  #   @orders = Order.desc_by_date
+  # end
 end
