@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(slug: params[:slug])
-    @items = @category.items
+    @items = @category.items.map { |item| item if item.store.status == "accepted" }
   end
 end
