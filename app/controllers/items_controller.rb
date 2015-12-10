@@ -25,13 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    all_accepted_items = []
-    Item.all.each do |item|
-      if item.store.status == "accepted"
-        all_accepted_items << item
-      end
-    end
-    @items = all_accepted_items
+    @items = Item.all.select { |item| item.store.status == "accepted"}
     @categories = Category.all
   end
 
