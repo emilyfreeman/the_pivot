@@ -10,10 +10,10 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
 
     @store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
     @store2 = Store.create(name: "Adam's Apples",
                           bio: "We rewl",
-                          status: "approved")
+                          status: "accepted")
     item1 = @store.items.create(name: "Apple",
                                 description: "Gala Apple",
                                 price: 6.0,
@@ -69,10 +69,10 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
 
     @store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
     @store2 = Store.create(name: "Adam's Apples",
                           bio: "We rewl",
-                          status: "approved")
+                          status: "accepted")
     item1 = @store.items.create(name: "Apple",
                                 description: "Gala Apple",
                                 price: 6.0,
@@ -133,10 +133,10 @@ class VisitorCanAddItemsToCartTest < ActionDispatch::IntegrationTest
 
     @store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
     @store2 = Store.create(name: "Adam's Apples",
                           bio: "We rewl",
-                          status: "approved")
+                          status: "accepted")
     item1 = @store.items.create(name: "Apple",
                                 description: "Gala Apple",
                                 price: 6.0,

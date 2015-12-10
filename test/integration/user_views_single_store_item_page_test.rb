@@ -5,7 +5,7 @@ class UserViewsSingleStoreItemTest < ActionDispatch::IntegrationTest
   def setup
     @store = Store.create(name: "Adam's Apples",
                          bio: "We rewl",
-                         status: "approved")
+                         status: "accepted")
     cat = Category.create(name: "fruit")
 
     item = Item.create(name: "Apple", description: "Gala Apple",

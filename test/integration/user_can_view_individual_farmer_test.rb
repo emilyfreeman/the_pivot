@@ -9,7 +9,7 @@ class UserCanViewIndividualFarmerTest < ActionDispatch::IntegrationTest
 
     store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
 
     store.users << user
 

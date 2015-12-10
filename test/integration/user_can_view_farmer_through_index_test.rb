@@ -9,7 +9,7 @@ class UserCanViewIndividualFarmerThroughIndexTest < ActionDispatch::IntegrationT
 
     store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
 
     store.users << user
 

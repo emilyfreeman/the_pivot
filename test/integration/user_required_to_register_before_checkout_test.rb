@@ -5,7 +5,7 @@ class UserRequiredToRegisterBeforeCheckoutTest < ActionDispatch::IntegrationTest
 
     store = Store.create(name: "Adam's Apples",
                                bio: "We rewl",
-                               status: "approved")
+                               status: "accepted")
 
     item1 = store.items.create(name: "Apple",
                                 description: "Gala Apple",
