@@ -25,7 +25,7 @@ class UserPermissionServiceTest < ActionDispatch::IntegrationTest
   end
 
   test "a business admin can visit items show" do
-    item = Item.create(name: "Thing")
+    item = Item.create!(name: "Thing", price: 8)
     visit item_path(item)
 
     assert item_path(item), current_path

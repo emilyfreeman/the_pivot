@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
   validates :name, presence: true
+  validates :price, presence: true
 
-  belongs_to :oil_type
   belongs_to :store
   belongs_to :category
 
