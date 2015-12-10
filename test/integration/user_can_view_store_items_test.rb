@@ -34,12 +34,7 @@ class UserCanViewStoreItemsTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Vegetable")
     end
 
-    within(".Fruit-items") do
-      assert page.has_content?("Apple")
-    end
-
-    within(".Vegetable-items") do
-      assert page.has_content?("Lettuce")
-    end
+    assert page.has_content?("Apple")
+    assert page.has_content?("Lettuce")
   end
 end

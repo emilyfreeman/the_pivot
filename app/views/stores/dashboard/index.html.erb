@@ -30,13 +30,6 @@ Total Orders: <%= @orders.all.count %><br />
 <%= link_to "Complete", store_orders_path(store: @store.slug, scope: "Complete") %> (<%= @orders.complete.count %>)<br /><br />
 
 <table class="striped">
-  <thead>
-    <tr>
-        <th data-field="id">Order ID</th>
-        <th data-field="name">Status</th>
-        <th data-field="price"></th>
-    </tr>
-  </thead>
   <tbody>
     <%= render partial: 'stores/dashboard/orders_table' %>
   </tbody>

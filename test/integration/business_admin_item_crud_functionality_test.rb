@@ -21,10 +21,7 @@ class BusinessAdminItemCrudTest < ActionDispatch::IntegrationTest
     click_button "Create Item"
 
     assert store_path(store: @store.slug, id: @store.id), current_path
-
-    within(".Stuff-items") do
-      assert page.has_content? "New thing"
-    end
+    assert page.has_content? "New thing"
   end
 
   test "business admin can delete item" do
