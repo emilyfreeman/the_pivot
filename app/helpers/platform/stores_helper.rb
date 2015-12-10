@@ -1,0 +1,2 @@
+module Platform::StoresHelper
+end

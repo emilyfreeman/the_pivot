@@ -5,8 +5,8 @@ class BusinessAdminCanViewOwnedStoreOrdersTest < ActionDispatch::IntegrationTest
     admin.roles.create!(name: "business_admin")
     @store = Store.create!(name: "Wild Honey")
     second_store = Store.create!(name: "Joes")
-    honey = @store.items.create!(name: "honey")
-    barley = second_store.items.create!(name: "barley")
+    honey = @store.items.create!(name: "honey", price: 5)
+    barley = second_store.items.create!(name: "barley", price: 5)
     @wild_honey_order = admin.orders.create!(total_price: 20)
     @barley_order = admin.orders.create!(total_price: 40)
     @wild_honey_order.item_orders.create(item_id: honey.id,

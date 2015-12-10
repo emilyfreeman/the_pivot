@@ -23,12 +23,13 @@
         <h4>Pending Farms</h4>
         <tr>
           <th>Farm</th>
-          <th>Activate</th>
+          <th>Activate/Decline</th>
         </tr>
         <% @pending_stores.each do |store| %>
         <tr>
           <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
-          <td> "Put Online" </td>
+          <td id=<%="accept-#{store.id}"%>><%= button_to "Put Online", platform_store_path(store, edit_action: "accepted"), method: :patch %></td>
+          <td id=<%="decline-#{store.id}"%>><%= button_to "Decline Store", platform_store_path(store, edit_action: "declined"), method: :patch %></td>
         </tr>
         <% end %>
       </table>
