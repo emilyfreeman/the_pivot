@@ -55,4 +55,8 @@ class PlatformAdminTakesStoreOfflineOnlineTest < ActionDispatch::IntegrationTest
       assert page.has_content?("#{@active_store.name}")
     end
   end
+
+  test "a store taken offline can not be seen on the website to shop by" do
+    
+  end
 end
