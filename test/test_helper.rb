@@ -126,6 +126,20 @@ class ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
+  def login_jorge
+    visit "/"
+    within(".nav-wrapper") do
+      click_link "Login"
+    end
+    jorge = User.create(username: "jorge@turing.io",
+                        password: "password"
+                        )
+    jorge.roles.create(name: "platform_admin")
+    fill_in "Username", with: "jorge@turing.io"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
   def create_shop
     category_1 = Category.create(name: "Lard")
     category_2 = Category.create(name: "Coconut Category")

@@ -14,7 +14,7 @@
 
   <div class="container categories">
     <% if store_permissions %>
-      <%= link_to "Add New Item", new_item_path %>
+      <%= link_to "Add New Item", new_item_path(store: @store.slug) %>
     <% end %>
     <% @store.categories.uniq.each do |category| %>
       <h5><%= category.name %></h5>

@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.store_id = current_user.store_id
+    @item.store_id = Store.find_by(slug: params[:item][:store]).id
     if @item.save
-      redirect_to store_path(store: current_user.store.slug, id: current_user.store.id)
+      redirect_to store_path(id: @item.store_id, store: @item.store.slug)
     else
       render :new
     end
