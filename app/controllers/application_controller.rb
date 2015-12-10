@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_store
-    current_user.store
+    if platform_admin?
+      Store.find_by(slug: params[:store])
+    else
+      current_user.store
+    end
   end
 
   def require_current_user
@@ -49,6 +53,6 @@ class ApplicationController < ActionController::Base
   end
 
   def store_permissions
-    current_user && current_user.store_admin? && current_user.store == @store
+    platform_admin? || current_user && current_user.store_admin? && current_user.store == @store
   end
 end

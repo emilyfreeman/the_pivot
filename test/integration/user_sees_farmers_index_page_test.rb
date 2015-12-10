@@ -1,17 +1,16 @@
 require "test_helper"
 
-class UserSeesFarmerIndexTest < ActionDispatch::IntegrationTest
+class UserDoesNotSeeFarmerItemsTest < ActionDispatch::IntegrationTest
 
   def setup
     visit '/farmers'
   end
 
   test 'user visits farmer index page' do
-    skip
     assert_equal farmers_path, current_path
     within(".farmers") do
-      assert page.has_content?("Adam's Apples")
-      assert page.has_content?("Owner Adam")     ##change
+      refute page.has_content?("Adam's Apples")
+      refute page.has_content?("Owner Adam")
     end
 
   end
