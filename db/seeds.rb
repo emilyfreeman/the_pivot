@@ -6,6 +6,8 @@ class Seed
     seed.generate_roles
     seed.generate_categories
     seed.generate_stores
+    seed.generate_pending_stores
+    seed.generate_declined_stores
     seed.generate_items
     seed.generate_users
     seed.generate_admins
@@ -13,6 +15,7 @@ class Seed
     seed.generate_emily_admin
     seed.generate_jason_admin
     seed.generate_generic_admin
+    seed.generate_platform_admin
   end
 
   def generate_roles
@@ -49,6 +52,30 @@ class Seed
       store = Store.create!(
         name: Faker::Company.name,
         status: "accepted",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_pending_stores
+    3.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "Pending",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_declined_stores
+    5.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "declined",
         bio: Faker::Lorem.paragraph,
         image: "https://robohash.org/#{i}.png"
       )
@@ -134,6 +161,17 @@ class Seed
       admin.roles << Role.find(2)
       add_stores(admin, 4)
       puts "User #{admin.first_name}: stores created!"
+  end
+
+  def generate_platform_admin
+    platform_admin = User.create!(
+      first_name: "Jorge",
+      last_name: "Rodrigues",
+      username: "jorge@turing.io",
+      password: "password"
+    )
+    platform_admin.roles << Role.find(1)
+    puts "Platform admin #{platform_admin.first_name}: created!"
   end
 
   private
