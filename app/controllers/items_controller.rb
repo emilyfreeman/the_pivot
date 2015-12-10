@@ -25,7 +25,13 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all.map { |item| item if item.store.status == "accepted" }
+    all_accepted_items = []
+    Item.all.each do |item|
+      if item.store.status == "accepted"
+        all_accepted_items << item
+      end
+    end
+    @items = all_accepted_items
     @categories = Category.all
   end
 
