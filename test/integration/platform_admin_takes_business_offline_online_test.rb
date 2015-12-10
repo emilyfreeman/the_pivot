@@ -57,6 +57,14 @@ class PlatformAdminTakesStoreOfflineOnlineTest < ActionDispatch::IntegrationTest
   end
 
   test "a store taken offline can not be seen on the website to shop by" do
-    
+    visit stores_path
+    assert page.has_content?(@active_store.name)
+    click_link "Platform Dashboard"
+
+    within("#remove-#{@active_store.id}") do
+      click_button "Take Offline"
+    end
+    visit stores_path
+    refute page.has_content?(@active_store.name)
   end
 end
