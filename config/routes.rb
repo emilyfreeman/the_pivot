@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "pages#home"
 
+  namespace :platform do
+    resources :dashboard, only: [:index]
+  end
   # resources instead of namespace? pass module as flag
   namespace :stores, path: ":store", as: :store do
     resources :dashboard, only: [:show, :index]
@@ -10,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index, :show], param: :slug
-  resources :items, only: [:index, :show, :new, :create, :edit, :destroy], param: :slug
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy], param: :slug
   resources :cart_items, only: [:create, :index, :destroy, :update]
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]

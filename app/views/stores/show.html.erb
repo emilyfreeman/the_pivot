@@ -3,6 +3,7 @@
 </div>
 </div>
 <div class="section white">
+
   <div class="row container">
     <div class="center profile-pic circle">
       <%= image_tag @store.image.url(:square) , :class => "circle" %>
@@ -10,17 +11,34 @@
     <p class="grey-text text-lighten bio"><%= @store.bio %></p>
     </div>
   </div>
-  <div class="row container categories">
-    <% if current_user && current_user.store == @store %>
+
+  <div class="container categories">
+    <% if store_permissions %>
       <%= link_to "Add New Item", new_item_path %>
     <% end %>
     <% @store.categories.uniq.each do |category| %>
       <h5><%= category.name %></h5>
-        <ul class="<%= category.name %>-items">
-          <% @store.items.where(category_id: category.id).each do |item| %>
-            <li><%= item.name %></li> <%= button_to "Edit", edit_item_path(item) %> <%= button_to "Delete", item_path(item), method: :delete %>
-          <% end %>
-        </ul>
+      <div class="row">
+        <% @store.items.where(category_id: category.id).each do |item| %>
+          <div class="col s12 m3">
+            <div class="card">
+              <div class="card-image">
+                <%= image_tag item.image.url(:square) %>
+                <span class="card-title"></span>
+              </div>
+              <div class="card-content">
+                <p><%= item.name %></p>
+              </div>
+              <div class="card-action">
+                <%= link_to "View this item", item_path(item) %></br>
+                <% if store_permissions %>
+                  <div class= "breathe col s12 m4 right"><%= button_to "Delete", item_path(item), method: :delete %></div>
+                  <div class= "breathe col s12 m3 right"><%= button_to "Edit", edit_item_path(item), method: :get %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
-</div>

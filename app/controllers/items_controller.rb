@@ -14,6 +14,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find_by(slug: params[:slug])
+  end
+
+  def update
+    @item = Item.find_by(slug: params[:slug])
+    @item.update(item_params)
+    redirect_to item_path(@item)
+  end
+
   def index
     @items = Item.all
     @categories = Category.all
@@ -23,10 +33,17 @@ class ItemsController < ApplicationController
     @item = Item.find_by(slug: params[:slug])
   end
 
+  def destroy
+    item = Item.find_by(slug: params[:slug])
+    item.destroy
+    redirect_to request.referrer
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:name,
+    params.require(:item).permit(:id,
+                                 :name,
                                  :price,
                                  :category_id,
                                  :image,

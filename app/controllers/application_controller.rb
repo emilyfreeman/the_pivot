@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart, :authorize!
-  helper_method :current_user, :current_store, :store_admin?, :category_arr
+  helper_method :current_user, :store_admin?, :category_arr, :store_permissions, :category_arr, :current_store
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -42,5 +42,9 @@ class ApplicationController < ActionController::Base
 
   def category_arr
     Category.all.map { |cat| [cat.name, cat.id] }
+  end
+
+  def store_permissions
+    current_user && current_user.store_admin? && current_user.store == @store
   end
 end

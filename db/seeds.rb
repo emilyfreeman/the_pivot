@@ -1,4 +1,3 @@
-require_relative 'image_links'
 
 # 50 items per category
 # 100 registered customers <-- hold off to save AWS upload times
@@ -10,6 +9,8 @@ class Seed
     seed.generate_roles
     seed.generate_categories
     seed.generate_stores
+    seed.generate_pending_stores
+    seed.generate_declined_stores
     seed.generate_items
     seed.generate_users
     seed.generate_josh
@@ -78,7 +79,11 @@ class Seed
     3.times do |i|
       store = Store.create!(
         name: Faker::Company.name,
+<<<<<<< HEAD
         status: "pending",
+=======
+        status: "Pending",
+>>>>>>> 981900ba763b4a3bae02b90b7feb9693d983e732
         bio: Faker::Lorem.paragraph,
         image: "https://robohash.org/#{i}.png"
       )
@@ -86,7 +91,11 @@ class Seed
     end
   end
 
+<<<<<<< HEAD
   def generate_declined_stored
+=======
+  def generate_declined_stores
+>>>>>>> 981900ba763b4a3bae02b90b7feb9693d983e732
     5.times do |i|
       store = Store.create!(
         name: Faker::Company.name,
@@ -190,6 +199,7 @@ class Seed
       puts "User #{admin.first_name}: stores created!"
   end
 
+<<<<<<< HEAD
   def generate_andrew_admin
       admin = User.create!(
         first_name: "Andrew",
@@ -202,6 +212,20 @@ class Seed
       add_stores(admin, 5)
       puts "User #{admin.first_name}: stores created!"
   end
+=======
+  def generate_platform_admin
+    platform_admin = User.create!(
+      first_name: "Jorge",
+      last_name: "Rodrigues",
+      username: "jorge@turing.io",
+      password: "password"
+    )
+    platform_admin.roles << Role.find(1)
+    puts "Platform admin #{platform_admin.first_name}: created!"
+  end
+
+  private
+>>>>>>> 981900ba763b4a3bae02b90b7feb9693d983e732
 
   def generate_platform_admin
     platform_admin = User.create!(

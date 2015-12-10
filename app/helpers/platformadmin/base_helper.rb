@@ -1,0 +1,2 @@
+module Platformadmin::BaseHelper
+end
