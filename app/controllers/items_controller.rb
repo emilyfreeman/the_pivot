@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.all.map { |item| item if item.store.status == "accepted" }
     @categories = Category.all
   end
 
