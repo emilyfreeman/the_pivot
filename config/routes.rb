@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   get '/farmers', to: 'stores#index'
 
-  get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
