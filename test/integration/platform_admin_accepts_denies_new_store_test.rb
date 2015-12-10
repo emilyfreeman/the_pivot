@@ -18,7 +18,8 @@ class PlatformAdminAcceptDeclineNewStoreTest < ActionDispatch::IntegrationTest
       assert page.has_content?("#{@pending_store2.name}")
       assert page.has_content?("#{@pending_store3.name}")
     end
-    within("##{@pending_store.id}") do
+
+    within("#accept-#{@pending_store.id}") do
       click_button "Put Online"
     end
 
@@ -30,6 +31,25 @@ class PlatformAdminAcceptDeclineNewStoreTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Current Farms")
       assert page.has_content?("#{@pending_store.name}")
     end
+  end
 
+  test "platform admin can deny a store" do
+    within("#pending-stores") do
+      assert page.has_content?("Pending Farms")
+      assert page.has_content?("#{@pending_store.name}")
+      assert page.has_content?("#{@pending_store2.name}")
+      assert page.has_content?("#{@pending_store3.name}")
+    end
+    within("#decline-#{@pending_store.id}") do
+      click_button "Decline Store"
+    end
+
+    within("#pending-stores") do
+      refute page.has_content?("#{@pending_store.name}")
+    end
+
+    within("#declined-stores") do
+      assert page.has_content?("#{@pending_store.name}")
+    end
   end
 end
