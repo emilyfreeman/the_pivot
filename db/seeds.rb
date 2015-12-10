@@ -1,4 +1,7 @@
-require_relative 'image_links'
+
+# 50 items per category
+# 100 registered customers <-- hold off to save AWS upload times
+# 10 orders per registered customer
 
 class Seed
   def self.start
@@ -10,12 +13,15 @@ class Seed
     seed.generate_declined_stores
     seed.generate_items
     seed.generate_users
+    seed.generate_josh
     seed.generate_admins
     seed.generate_justin_admin
     seed.generate_emily_admin
     seed.generate_jason_admin
-    seed.generate_generic_admin
+    seed.generate_john_admin
+    seed.generate_andrew_admin
     seed.generate_platform_admin
+    seed.generate_orders
   end
 
   def generate_roles
@@ -44,6 +50,16 @@ class Seed
         store_id: Random.new.rand(1..Store.count)
         )
       puts "Item #{i}: #{item.name} created!"
+    end
+  end
+
+  def generate_orders
+    User.all.each do |user|
+      10.times do |i|
+        order = user.orders.create!(total_price: "#{i + 1 * 10}")
+        add_item_orders(order)
+        puts "Order #{order.id}: Order for #{user.username} created!"
+      end
     end
   end
 
@@ -97,13 +113,25 @@ class Seed
     end
   end
 
+  def generate_josh
+    user = User.create!(
+      first_name: "Josh",
+      last_name: "Mejia",
+      username: "josh@turing.io",
+      password: "password",
+      bio: "legendary mod 3 instructor",
+      image: "http://turing.io/images/p_josh_m_gray-e0b2801d.jpg"
+    )
+    user.roles << Role.find(3)
+  end
+
   def generate_admins
     20.times do |i|
       admin = User.create!(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        username: Faker::Internet.user_name + "#{i * 2}",
-        password_digest: Faker::Internet.password
+        username: "business admin #{i + 1}",
+        password: "bapassword#{i + 1}"
       )
       admin.roles << Role.find(2)
       add_stores(admin, i)
@@ -150,11 +178,11 @@ class Seed
       puts "User #{admin.first_name}: stores created!"
   end
 
-  def generate_generic_admin
+  def generate_john_admin
       admin = User.create!(
-        first_name: "J",
-        last_name: "Doe",
-        username: "admin",
+        first_name: "John",
+        last_name: "Slota",
+        username: "johnslota",
         password: "password",
         image: "https://robohash.org/generic.png"
       )
@@ -163,23 +191,48 @@ class Seed
       puts "User #{admin.first_name}: stores created!"
   end
 
+  def generate_andrew_admin
+      admin = User.create!(
+        first_name: "Andrew",
+        last_name: "Carmer",
+        username: "andrew@turing.io",
+        password: "password",
+        image: "http://turing.io/images/p_andrew_gray-c6db8a4a.jpg"
+      )
+      admin.roles << Role.find(2)
+      add_stores(admin, 5)
+      puts "User #{admin.first_name}: stores created!"
+  end
+
   def generate_platform_admin
     platform_admin = User.create!(
       first_name: "Jorge",
       last_name: "Rodrigues",
       username: "jorge@turing.io",
-      password: "password"
-    )
+      password: "password",
+      image: "http://turing.io/images/p_jorge_gray-30310ede.jpg"
+      )
     platform_admin.roles << Role.find(1)
     puts "Platform admin #{platform_admin.first_name}: created!"
   end
 
   private
 
-  def add_stores(user, count)
-    store = Store.find(count + 1)
-    store.users << user
-  end
+    def add_stores(user, count)
+      store = Store.find(count + 1)
+      store.users << user
+    end
+
+    def add_item_orders(order)
+      5.times do |i|
+        item = Item.find(Random.new.rand(1..50))
+        item_order = order.item_orders.create!(item_id: item.id,
+                                               quantity: (i + 1),
+                                               subtotal: item.price * (i +1),
+                                               store_id: item.store.id)
+        puts "Added item #{item.name} to order #{order.id}."
+      end
+    end
 
 end
 
