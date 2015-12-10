@@ -3,7 +3,7 @@ class StoresController < ApplicationController
     @stores = Store.where(status: "accepted")
   end
 
-  def show
+  def show  
     @store = Store.find_by(slug: params[:store])
     render layout: 'wide'
   end
