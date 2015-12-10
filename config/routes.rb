@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :platform do
     resources :dashboard, only: [:index]
+    resources :stores, only: [:update]
   end
   # resources instead of namespace? pass module as flag
   namespace :stores, path: ":store", as: :store do
