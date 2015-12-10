@@ -109,7 +109,6 @@ class ActionDispatch::IntegrationTest
     fill_in "Username", with: "platform_admin"
     fill_in "Password", with: "password"
     click_button "Login"
-    save_and_open_page
   end
 
   def create_shop

@@ -13,15 +13,16 @@ class PlatformDashboardTest < ActionDispatch::IntegrationTest
 
   test "platform admin can see the list of all active online stores" do
     within("#active-stores") do
-      assert page.has_content?("Active Stores")
-      assert page.has_content?("@active_store.name")
+      assert page.has_content?("Current Farms")
+    end
+      # assert page.has_content?("@active_store.name")
   end
 
-  test "platform admin can see a list of pending stores" do
-
-  end
-
-  test "platform admin can see a list of declined stores" do
-
-  end
+  # test "platform admin can see a list of pending stores" do
+  #
+  # end
+  #
+  # test "platform admin can see a list of declined stores" do
+  #
+  # end
 end
