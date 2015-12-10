@@ -1,0 +1,13 @@
+<h4>Orders</h4>
+
+Total Orders: <%= current_store.orders.count %><br />
+<%= link_to "Ordered", store_orders_path(store: current_store.slug, scope: "Ordered") %> (<%= ordered_status %>) |
+<%= link_to "Paid", store_orders_path(store: current_store.slug, scope: "Paid") %> (<%= paid_status %>) |
+<%= link_to "Cancelled", store_orders_path(store: current_store.slug, scope: "Cancelled") %> (<%= cancelled_status %>) |
+<%= link_to "Complete", store_orders_path(store: current_store.slug, scope: "Complete") %> (<%= complete_status %>)<br /><br />
+
+<table class="striped">
+  <tbody>
+    <%= render partial: 'stores/dashboard/orders_table' %>
+  </tbody>
+</table>

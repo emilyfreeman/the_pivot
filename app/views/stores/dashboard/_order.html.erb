@@ -2,6 +2,9 @@
   <tr>
     <td class="order-<%= order.id %>"><%= order.id %></td>
     <td><%= order.created_at.strftime("%B %d, %Y") %></td>
-    <td><%= link_to "View Order Details", store_order_path(@store.slug, order)%></td>
+      <% order.update_links.each do |link_name| %>
+        <td><%= button_to link_name, store_order_path(store: current_store.slug, new_status: link_name, id: order.id), method: :patch, class: "waves-light btn" %></td>
+      <% end %>
+    <td><%= link_to "View Order Details", store_order_path(current_store.slug, order)%></td>
   </tr>
 <% end %>
