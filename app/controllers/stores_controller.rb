@@ -9,9 +9,19 @@ class StoresController < ApplicationController
   end
 
   def new
+    @store = Store.new
   end
 
   def create
+    @store = Store.new(store_params)
+    if @store.save
+      current_user.update(store_id: @store.id)
+      flash[:notice] = "#{current_user.first_name} you have submitted business #{@store.name}. Please wait while we review your business"
+      redirect_to dashboard_path
+    else
+      flash.now[:error] = @store.errors.full_messages.join(', ')
+      render :new
+    end
   end
 
   def edit

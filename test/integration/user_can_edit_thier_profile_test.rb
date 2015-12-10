@@ -19,7 +19,7 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
     fill_in "Username", with: "newname"
     fill_in "Password", with: "newpassword"
     click_button "Login"
-    
+
     within("#profile-name") do
       assert page.has_content?("newname")
     end

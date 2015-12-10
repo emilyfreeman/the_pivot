@@ -17123,14 +17123,25 @@ Picker.extend( 'pickadate', DatePicker )
 
 
 
-(function() {
+$(document).ready(function () {
 
+  var $users = $('.user');
 
-}).call(this);
-(function() {
+  $('#user_filter_username').keyup('change', function () {
+    console.log(this.value)
+    var currentName = this.value;
+    $users.each(function (index, user) {
+      $user = $(user);
+      if ($user.data('username').includes(currentName)) {
+        $user.show();
+      }
+      else {
+        $user.hide();
+      }
+    });
+  });
 
-
-}).call(this);
+});
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -17153,6 +17164,7 @@ var loaded = function(){
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $(".button-collapse").sideNav();
+    $('.parallax').parallax();
 
     var $chips = $('.chip');
 
