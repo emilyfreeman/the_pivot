@@ -72,7 +72,6 @@ class ActionDispatch::IntegrationTest
   def create_active_store
     @active_store = Store.create(name:"Some Active Store",
                         status: "accepted")
-                      
   end
 
   def create_pending_store
