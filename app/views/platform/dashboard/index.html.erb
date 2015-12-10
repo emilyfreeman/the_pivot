@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col s6 m6 l6">
     <div id='active-stores'>
-      <table id="" class='table-striped table-bordered table-hover'>
+      <table class='table-striped table-bordered table-hover'>
         <h4>Current Farms</h4>
         <tr>
           <th>Farm</th>
@@ -11,7 +11,7 @@
         <% @active_stores.each do |store| %>
         <tr>
           <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
-          <td> "Take Offline" </td>
+          <td id=<%="remove-#{store.id}"%>><%= button_to "Take Offline", platform_store_path(store, edit_action: "Pending"), method: :patch  %></td>
         </tr>
         <% end %>
       </table>
@@ -45,6 +45,7 @@
         <% @declined_stores.each do |store| %>
         <tr>
           <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
+          <td id=<%="pend-#{store.id}"%>><%= button_to "Make Pending", platform_store_path(store, edit_action: "Pending"), method: :patch %></td>
         </tr>
         <% end %>
       </table>
