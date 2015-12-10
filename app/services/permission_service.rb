@@ -35,6 +35,9 @@ class PermissionService
     return true if controller == "orders" && action.in?(%w(index show))
     return true if controller == "platform/dashboard" && action.in?(%w(index))
     return true if controller == "platform/stores" && action.in?(%w(update))
+    return true if controller == "stores/dashboard" && action.in?(%w(index show))
+    return true if controller == "stores/orders" && action.in?(%w(show index update))
+    return true if controller == "stores/items" && action.in?(%w(index show))
   end
 
   def store_admin_permissions

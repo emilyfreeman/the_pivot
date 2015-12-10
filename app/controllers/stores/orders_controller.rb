@@ -7,7 +7,7 @@ class Stores::OrdersController < ApplicationController
   end
 
   def show
-    @store = current_user.store
+    @store = current_store
     @order = @store.orders.find(params[:id])
     @item_orders = @store.item_orders.where(order_id: @order.id)
   end
