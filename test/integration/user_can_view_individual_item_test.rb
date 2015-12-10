@@ -6,11 +6,12 @@ class UserCanViewIndividualItemTest < ActionDispatch::IntegrationTest
     fruit = Category.create!(name: "Fruit")
     vegetable = Category.create!(name: "Vegetable")
     store = Store.create!(name: "Slota's farm",
-                          bio: "some cool bio")
-    apples = fruit.items.create!(name: "Apple", price: 9)
-    oranges = fruit.items.create!(name: "Orange", price: 3)
-    lettuce = vegetable.items.create!(name: "Lettuce", price: 5)
-    carrots = vegetable.items.create!(name: "Carrots", price: 4)
+                          bio: "some cool bio",
+                          status: "accepted")
+    apples = fruit.items.create!(name: "Apple", price: 9, store_id: store.id)
+    oranges = fruit.items.create!(name: "Orange", price: 3, store_id: store.id)
+    lettuce = vegetable.items.create!(name: "Lettuce", price: 5, store_id: store.id)
+    carrots = vegetable.items.create!(name: "Carrots", price: 4, store_id: store.id)
     store.items.push(apples, oranges, lettuce, carrots)
   end
 
