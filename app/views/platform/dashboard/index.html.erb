@@ -28,7 +28,7 @@
         <% @pending_stores.each do |store| %>
         <tr>
           <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
-          <td><%= button_to "Put Online", platform_store_path(store, edit_action: "accepted"), method: :patch %></td>
+          <td id=<%="#{store.id}"%>><%= button_to "Put Online", platform_store_path(store, edit_action: "accepted"), method: :patch %></td>
         </tr>
         <% end %>
       </table>

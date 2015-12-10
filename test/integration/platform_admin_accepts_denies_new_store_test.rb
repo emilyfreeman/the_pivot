@@ -18,7 +18,19 @@ class PlatformAdminAcceptDeclineNewStoreTest < ActionDispatch::IntegrationTest
       assert page.has_content?("#{@pending_store2.name}")
       assert page.has_content?("#{@pending_store3.name}")
     end
-save_and_open_page
-    first(:link, "Put Store Online").click
+    within("##{@pending_store.id}") do
+      click_button "Put Online"
+    end
+
+    within("#pending-stores") do
+      refute page.has_content?("#{@pending_store.name}")
+    end
+    save_and_open_page
+
+    within("#active-stores") do
+      assert page.has_content?("Current Farms")
+      assert page.has_content?("#{@pending_store.name}")
+    end
+
   end
 end
