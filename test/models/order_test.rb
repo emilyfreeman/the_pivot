@@ -23,14 +23,4 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal "Complete", @order3.status_update("mark as complete")
   end
 
-  test "test scope action works" do
-    order1 = Order.scope_action("Ordered")
-    order2 = Order.scope_action("Paid")
-    order3 = Order.scope_action("Cancelled")
-
-    assert_equal Order.scope_action("Ordered").count, 1
-    assert_equal Order.scope_action("Paid").count, 1
-    assert_equal Order.scope_action("Cancelled").count, 0
-  end
-
 end
