@@ -11,14 +11,18 @@
     </div>
   </div>
   <div class="row container categories">
-    <% if current_user && current_user.store == @store %>
+    <% if store_permissions %>
       <%= link_to "Add New Item", new_item_path %>
     <% end %>
     <% @store.categories.uniq.each do |category| %>
       <h5><%= category.name %></h5>
         <ul class="<%= category.name %>-items">
           <% @store.items.where(category_id: category.id).each do |item| %>
-            <li><%= item.name %></li> <%= button_to "Edit", edit_item_path(item) %> <%= button_to "Delete", item_path(item), method: :delete %>
+            <li><%= item.name %></li>
+            <% if store_permissions %>
+              <%= button_to "Edit", edit_item_path(item), method: :get %>
+              <%= button_to "Delete", item_path(item), method: :delete %>
+            <% end %>
           <% end %>
         </ul>
     <% end %>
