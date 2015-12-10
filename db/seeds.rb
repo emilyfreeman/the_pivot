@@ -6,6 +6,8 @@ class Seed
     seed.generate_roles
     seed.generate_categories
     seed.generate_stores
+    seed.generate_pending_stores
+    seed.generate_declined_stores
     seed.generate_items
     seed.generate_users
     seed.generate_admins
@@ -51,7 +53,31 @@ class Seed
         name: Faker::Company.name,
         status: "accepted",
         bio: Faker::Lorem.paragraph,
-        # image: "https://robohash.org/#{i}.png"
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_pending_stores
+    3.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "Pending",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_declined_stores
+    5.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "declined",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
       )
       puts "Store #{i}: #{store.name} created!"
     end

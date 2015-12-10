@@ -1,1 +1,56 @@
-<h2>Admin Dashboard</h2>
+<h2>Platform Admin Dashboard</h2>
+<%= link_to "All Items", item_path %>
+<%= link_to "All Users",  %>
+<div class="row">
+  <div class="col s6 m6 l6">
+    <div class=''>
+      <table id="" class='table-striped table-bordered table-hover'>
+        <h4>Current Farms</h4>
+        <tr>
+          <th>Farm</th>
+          <th>Take Offline</th>
+        </tr>
+        <% @active_stores.each do |store| %>
+        <tr>
+          <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
+          <td> "Take Offline" </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="col s6 m6 l6">
+    <div class=''>
+      <table id="" class='table-striped table-bordered table-hover'>
+        <h4>Pending Farms</h4>
+        <tr>
+          <th>Farm</th>
+          <th>Activate</th>
+        </tr>
+        <% @pending_stores.each do |store| %>
+        <tr>
+          <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
+          <td> "Put Online" </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div><br><br>
+  <div class="col s6 m6 l6">
+    <div class=''>
+      <table id="" class='table-striped table-bordered table-hover'>
+        <h4>Delcined Farms</h4>
+        <tr>
+          <th>Farm</th>
+          <th>Activate</th>
+        </tr>
+        <% @declined_stores.each do |store| %>
+        <tr>
+          <td><%= link_to "#{store.name}", "/#{store.slug}" %></td>
+          <td></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
