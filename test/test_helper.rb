@@ -69,6 +69,22 @@ class ActionDispatch::IntegrationTest
     @store.users << @admin
   end
 
+  def create_active_store
+    @active_store = Store.create(name:"Some Active Store",
+                        status: "accepted")
+                      
+  end
+
+  def create_pending_store
+    @pending_store = Store.create(name:"Some Pending Store",
+                        status: "Pending")
+  end
+
+  def create_declined_store
+    @declined_store = Store.create(name:"Some Declined Store",
+                        status: "declined")
+  end
+
   def create_platform_admin
     @platform_admin = User.create(username: "platform_admin", password: "password")
     @platform_admin.roles.create(name: "platform_admin")
