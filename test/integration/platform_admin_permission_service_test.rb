@@ -47,7 +47,8 @@ class PlatformAdminPermissionServiceTest < ActionDispatch::IntegrationTest
 
   test "a platform admin can view specific category show page" do
     cat = Category.create(name: "category")
-    Item.create(name: "cat", category_id: cat.id)
+    store = Store.create(name: "jenk", status: "accepted")
+    Item.create(name: "cat", category_id: cat.id, store_id: store.id)
 
     visit category_path(slug: cat.slug)
 
