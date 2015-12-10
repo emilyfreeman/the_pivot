@@ -13,6 +13,7 @@ class Seed
     seed.generate_emily_admin
     seed.generate_jason_admin
     seed.generate_generic_admin
+    seed.generate_platform_admin
   end
 
   def generate_roles
@@ -56,6 +57,30 @@ class Seed
     end
   end
 
+  def generate_pending_stores
+    3.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "pending",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
+  def generate_declined_stored
+    5.times do |i|
+      store = Store.create!(
+        name: Faker::Company.name,
+        status: "declined",
+        bio: Faker::Lorem.paragraph,
+        image: "https://robohash.org/#{i}.png"
+      )
+      puts "Store #{i}: #{store.name} created!"
+    end
+  end
+
   def generate_users
     10.times do |i|
       user = User.create!(
@@ -75,8 +100,8 @@ class Seed
       admin = User.create!(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        username: Faker::Internet.user_name + "#{i * 2}",
-        password_digest: Faker::Internet.password
+        username: "business admin #{i + 1}",
+        password: "bapassword#{i + 1}"
       )
       admin.roles << Role.find(2)
       add_stores(admin, i)
@@ -123,11 +148,11 @@ class Seed
       puts "User #{admin.first_name}: stores created!"
   end
 
-  def generate_generic_admin
+  def generate_john_admin
       admin = User.create!(
-        first_name: "J",
-        last_name: "Doe",
-        username: "admin",
+        first_name: "John",
+        last_name: "Slota",
+        username: "johnslota",
         password: "password",
         image: "https://robohash.org/generic.png"
       )
@@ -136,12 +161,23 @@ class Seed
       puts "User #{admin.first_name}: stores created!"
   end
 
+  def generate_platform_admin
+    platform_admin = User.create!(
+      first_name: "Jorge",
+      last_name: "Rodrigues",
+      username: "jorge@turing.io",
+      password: "password"
+      )
+    platform_admin.roles << Role.find(1)
+    puts "Platform admin #{platform_admin.first_name}: created!"
+  end
+
   private
 
-  def add_stores(user, count)
-    store = Store.find(count + 1)
-    store.users << user
-  end
+    def add_stores(user, count)
+      store = Store.find(count + 1)
+      store.users << user
+    end
 
 end
 

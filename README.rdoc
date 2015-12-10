@@ -1,4 +1,4 @@
-{<img src='https://travis-ci.org/emilydowdle/the_pivot.svg'>}[https://travis-ci.org/emilydowdle/the_pivot] {<img alt='Stories in Ready' src='https://badge.waffle.io/emilydowdle/the_pivot.png?label=ready&title=Ready' />}[https://waffle.io/emilydowdle/the_pivot] 
+{<img src='https://travis-ci.org/emilydowdle/the_pivot.svg'>}[https://travis-ci.org/emilydowdle/the_pivot] {<img alt='Stories in Ready' src='https://badge.waffle.io/emilydowdle/the_pivot.png?label=ready&title=Ready' />}[https://waffle.io/emilydowdle/the_pivot]
 
 == README
 
