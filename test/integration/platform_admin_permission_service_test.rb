@@ -25,7 +25,8 @@ class PlatformAdminPermissionServiceTest < ActionDispatch::IntegrationTest
   end
 
   test "a platform admin can visit items show" do
-    item = Item.create(name: "Thing")
+    item = Item.create!(name: "Thing", price: 3)
+    # require 'pry'; binding.pry
     visit item_path(item)
 
     assert item_path(item), current_path
@@ -47,8 +48,14 @@ class PlatformAdminPermissionServiceTest < ActionDispatch::IntegrationTest
 
   test "a platform admin can view specific category show page" do
     cat = Category.create(name: "category")
+<<<<<<< HEAD
     store = Store.create(name: "jenk", status: "accepted")
     Item.create(name: "cat", category_id: cat.id, store_id: store.id)
+||||||| merged common ancestors
+    Item.create(name: "cat", category_id: cat.id)
+=======
+    Item.create(name: "cat", category_id: cat.id, price: 3)
+>>>>>>> master
 
     visit category_path(slug: cat.slug)
 

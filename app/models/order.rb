@@ -28,17 +28,5 @@ class Order < ActiveRecord::Base
     elsif new_status == "mark as complete"
       self.status = "Complete"
     end
-  end
-
-  def self.scope_action(scope)
-    if scope == "Ordered"
-      Order.ordered
-    elsif scope == "Paid"
-      Order.paid
-    elsif scope == "Cancelled"
-      Order.cancelled
-    else
-      Order.complete
-    end
-  end
+  end 
 end
