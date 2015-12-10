@@ -25,7 +25,6 @@ class PlatformAdminAcceptDeclineNewStoreTest < ActionDispatch::IntegrationTest
     within("#pending-stores") do
       refute page.has_content?("#{@pending_store.name}")
     end
-    save_and_open_page
 
     within("#active-stores") do
       assert page.has_content?("Current Farms")
