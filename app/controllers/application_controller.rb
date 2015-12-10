@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart, :authorize!
-  helper_method :current_user, :store_admin?, :category_arr, :store_permissions, :category_arr, :current_store
+  helper_method :current_user, :store_admin?, :platform_admin?, :category_arr, :store_permissions, :category_arr, :current_store
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def store_admin?
     current_user && "business_admin".in?(current_user.roles.pluck(:name))
+  end
+
+  def platform_admin?
+    current_user && current_user.platform_admin?
   end
 
   def current_permission
