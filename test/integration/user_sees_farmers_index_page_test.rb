@@ -10,7 +10,7 @@ class UserDoesNotSeeFarmerItemsTest < ActionDispatch::IntegrationTest
     assert_equal farmers_path, current_path
     within(".farmers") do
       refute page.has_content?("Adam's Apples")
-      refute page.has_content?("Owner Adam")     ##change
+      refute page.has_content?("Owner Adam")
     end
 
   end
